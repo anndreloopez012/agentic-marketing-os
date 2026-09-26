@@ -1,0 +1,202 @@
+{
+  "platforms": {
+    "tiktok": {
+      "name": "TikTok",
+      "aspect_ratio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "max_duration": 60,
+      "recommended_duration_range": [7, 30],
+      "hook_duration_seconds": 2.0,
+      "safe_zones": {
+        "top_margin_px": 160,
+        "bottom_margin_px": 380,
+        "left_margin_px": 60,
+        "right_margin_px": 140
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "8M",
+      "description": "Formato vertical 9:16 para TikTok con espacio libre a la derecha para interacción y abajo para descripción/audio."
+    },
+    "instagram_reels": {
+      "name": "Instagram Reels",
+      "aspect_ratio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "max_duration": 90,
+      "recommended_duration_range": [7, 25],
+      "hook_duration_seconds": 2.0,
+      "safe_zones": {
+        "top_margin_px": 180,
+        "bottom_margin_px": 340,
+        "left_margin_px": 50,
+        "right_margin_px": 120
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "8M",
+      "description": "Reels verticales para Instagram con márgenes seguros para la interfaz móvil."
+    },
+    "instagram_story": {
+      "name": "Instagram Stories",
+      "aspect_ratio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "max_duration": 15,
+      "recommended_duration_range": [5, 15],
+      "hook_duration_seconds": 1.5,
+      "safe_zones": {
+        "top_margin_px": 200,
+        "bottom_margin_px": 250,
+        "left_margin_px": 40,
+        "right_margin_px": 40
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "7M",
+      "description": "Historias de Instagram de ritmo rápido con navegación táctil."
+    },
+    "instagram_feed_portrait": {
+      "name": "Instagram Feed Portrait",
+      "aspect_ratio": "4:5",
+      "width": 1080,
+      "height": 1350,
+      "fps": 30,
+      "max_duration": 60,
+      "recommended_duration_range": [10, 45],
+      "hook_duration_seconds": 2.5,
+      "safe_zones": {
+        "top_margin_px": 60,
+        "bottom_margin_px": 80,
+        "left_margin_px": 50,
+        "right_margin_px": 50
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "7M",
+      "description": "Formato 4:5 que aprovecha el máximo espacio vertical del Feed de Instagram sin recorte."
+    },
+    "instagram_feed_square": {
+      "name": "Instagram / Facebook Square Feed",
+      "aspect_ratio": "1:1",
+      "width": 1080,
+      "height": 1080,
+      "fps": 30,
+      "max_duration": 60,
+      "recommended_duration_range": [10, 45],
+      "hook_duration_seconds": 2.5,
+      "safe_zones": {
+        "top_margin_px": 50,
+        "bottom_margin_px": 50,
+        "left_margin_px": 50,
+        "right_margin_px": 50
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "6M",
+      "description": "Formato 1:1 clásico para feeds estándar de Meta y LinkedIn."
+    },
+    "youtube_shorts": {
+      "name": "YouTube Shorts",
+      "aspect_ratio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "max_duration": 60,
+      "recommended_duration_range": [15, 50],
+      "hook_duration_seconds": 2.0,
+      "safe_zones": {
+        "top_margin_px": 140,
+        "bottom_margin_px": 280,
+        "left_margin_px": 50,
+        "right_margin_px": 130
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 48000,
+      "target_audio_lufs": -14.0,
+      "bitrate": "10M",
+      "description": "YouTube Shorts en 9:16 con audio a 48kHz y márgenes seguros optimizados para la app móvil de YouTube."
+    },
+    "youtube_landscape": {
+      "name": "YouTube / LinkedIn Landscape",
+      "aspect_ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "max_duration": 600,
+      "recommended_duration_range": [30, 180],
+      "hook_duration_seconds": 3.0,
+      "safe_zones": {
+        "top_margin_px": 50,
+        "bottom_margin_px": 80,
+        "left_margin_px": 80,
+        "right_margin_px": 80
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 48000,
+      "target_audio_lufs": -14.0,
+      "bitrate": "12M",
+      "description": "Video panorámico 16:9 tradicional para canales de YouTube corporativos y LinkedIn corporativo."
+    },
+    "linkedin_feed": {
+      "name": "LinkedIn Feed",
+      "aspect_ratio": "1:1",
+      "width": 1080,
+      "height": 1080,
+      "fps": 30,
+      "max_duration": 180,
+      "recommended_duration_range": [20, 60],
+      "hook_duration_seconds": 3.0,
+      "safe_zones": {
+        "top_margin_px": 60,
+        "bottom_margin_px": 60,
+        "left_margin_px": 60,
+        "right_margin_px": 60
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "6M",
+      "description": "Formato profesional optimizado para la lectura en feed corporativo de LinkedIn."
+    },
+    "x_twitter": {
+      "name": "X / Twitter",
+      "aspect_ratio": "16:9",
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "max_duration": 140,
+      "recommended_duration_range": [10, 40],
+      "hook_duration_seconds": 1.5,
+      "safe_zones": {
+        "top_margin_px": 40,
+        "bottom_margin_px": 50,
+        "left_margin_px": 50,
+        "right_margin_px": 50
+      },
+      "video_codec": "libx264",
+      "audio_codec": "aac",
+      "audio_sample_rate": 44100,
+      "target_audio_lufs": -14.0,
+      "bitrate": "5M",
+      "description": "Video ágil y de rápida reproducción automática para el feed de X/Twitter."
+    }
+  }
+}

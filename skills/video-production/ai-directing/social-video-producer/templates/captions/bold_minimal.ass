@@ -1,0 +1,14 @@
+[Script Info]
+Title: Bold Minimal Corporate Subtitles
+ScriptType: v4.00+
+Collisions: Normal
+PlayDepth: 0
+Timer: 100.0000
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: CorporateClean,Helvetica,46,&H00FFFFFF,&H00C0C0C0,&H00202020,&H60000000,-1,0,0,0,100,100,0,0,1,3,2,2,70,70,180,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
