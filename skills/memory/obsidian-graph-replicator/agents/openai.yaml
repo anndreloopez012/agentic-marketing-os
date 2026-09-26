@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Graph Replicator"
+  short_description: "Grafo nebula sin dependencias"
+  default_prompt: "Use $obsidian-graph-replicator to install the self-contained Graphify nebula graph template in this project."

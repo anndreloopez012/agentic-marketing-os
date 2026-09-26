@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graphify Nebula Graph</title>
+  <link rel="stylesheet" href="./nebula-graph.css">
+</head>
+<body>
+  <main class="nebula-shell" data-graph-src="">
+    <canvas id="nebulaGraph" aria-label="Interactive knowledge graph"></canvas>
+    <div class="nebula-scan" aria-hidden="true"></div>
+    <section class="nebula-panel" aria-label="Graph controls">
+      <div>
+        <p class="eyebrow">Graphify Nebula</p>
+        <h1>Knowledge Graph</h1>
+      </div>
+      <div class="metrics" aria-live="polite">
+        <span><b id="nodeCount">0</b> nodes</span>
+        <span><b id="edgeCount">0</b> links</span>
+        <span><b id="communityCount">0</b> groups</span>
+      </div>
+      <label class="search-label" for="graphSearch">Search node</label>
+      <input id="graphSearch" type="search" autocomplete="off" placeholder="Search project, note, skill...">
+      <div id="searchResults" class="search-results"></div>
+    </section>
+    <aside id="nodePanel" class="node-panel" aria-live="polite">
+      <button id="closeNodePanel" type="button" aria-label="Close details">x</button>
+      <p id="nodeCommunity" class="eyebrow">Node</p>
+      <h2 id="nodeTitle">Select a node</h2>
+      <p id="nodeMeta" class="node-meta">Drag to rotate. Wheel to zoom.</p>
+      <div id="nodeLinks" class="node-links"></div>
+    </aside>
+    <div id="graphTooltip" class="graph-tooltip" role="status"></div>
+  </main>
+  <script src="./nebula-graph.js"></script>
+</body>
+</html>
