@@ -1,0 +1,9 @@
+{
+  "default_mode": "read-only",
+  "write_requires_explicit_confirmation": true,
+  "store_credentials_in_vault": false,
+  "github": {"enabled": true, "authority": "github", "scope": "open assigned issues and pull requests"},
+  "linear": {"enabled": true, "authority": "linear", "team": "AndreTv", "scope": "active issues"},
+  "calendar": {"enabled": true, "authority": "calendar", "calendar_id": "primary", "window_days": 31, "redact_descriptions": true},
+  "tasks": {"enabled": true, "authority": "obsidian"}
+}

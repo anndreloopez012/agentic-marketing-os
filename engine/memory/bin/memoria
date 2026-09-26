@@ -1,0 +1,514 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+import re
+from datetime import datetime
+from pathlib import Path
+
+from portable_paths import DATA_ROOT, MEMORIA_ROOT, BIN_ROOT
+
+TOOL_ROOT = Path(__file__).resolve().parent
+INDEX_PATH = DATA_ROOT / "memoria_index.json"
+REFRESH_SCRIPT = TOOL_ROOT / "refresh_project_memory.py"
+REFRESH_GRAPH_SCRIPT = TOOL_ROOT / "refresh_graphify_memory.py"
+VITAMINIZE_SCRIPT = TOOL_ROOT / "vitaminize_memory.py"
+CAPTURE_SCRIPT = TOOL_ROOT / "smart_capture.py"
+PORTABILITY_SCRIPT = TOOL_ROOT / "test_vault_portability.py"
+DEEP_SCRIPT = TOOL_ROOT / "deep_documentation.py"
+TEMPORAL_SCRIPT = TOOL_ROOT / "temporal_graph.py"
+RELATION_SCRIPT = TOOL_ROOT / "relation_review.py"
+INTEGRATION_SCRIPT = TOOL_ROOT / "integration_hub.py"
+STATUS_PATH = DATA_ROOT / "operational_status.json"
+VAULT_ROOT = MEMORIA_ROOT
+WORKLOG_DIR = VAULT_ROOT / "Bitacora"
+WORKLOG_INDEX = WORKLOG_DIR / "Registro de Trabajo.md"
+WORKLOG_JSON = DATA_ROOT / "memoria_worklog.json"
+
+
+def load_index() -> dict:
+    if not INDEX_PATH.exists():
+        refresh()
+    try:
+        return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise SystemExit(f"No se pudo leer el indice: {exc}")
+
+
+def refresh() -> None:
+    subprocess.check_call([sys.executable, str(REFRESH_SCRIPT)])
+
+
+def refresh_graph() -> None:
+    subprocess.check_call([sys.executable, str(REFRESH_GRAPH_SCRIPT)])
+
+
+def operational_status() -> dict:
+    if not STATUS_PATH.exists():
+        subprocess.check_call([sys.executable, str(VITAMINIZE_SCRIPT)])
+    return json.loads(STATUS_PATH.read_text(encoding="utf-8"))
+
+
+def cmd_contexto(args: argparse.Namespace) -> None:
+    index = load_index()
+    project = find_project(index, args.name)
+    if not project:
+        raise SystemExit("Proyecto no encontrado")
+    path = MEMORIA_ROOT / "Proyectos" / note_safe(project["family"]) / note_safe(project["name"]) / "05 - Contexto para IA.md"
+    if args.path:
+        print(path)
+    else:
+        print(path.read_text(encoding="utf-8", errors="ignore"))
+
+
+def cmd_semaforo(args: argparse.Namespace) -> None:
+    data = operational_status()
+    rows = data.get("projects", {})
+    if args.proyecto:
+        rows = {name: value for name, value in rows.items() if args.proyecto.casefold() in name.casefold()}
+    for name, item in sorted(rows.items()):
+        reasons = "; ".join(item.get("motivos") or item.get("informativo") or ["sin alertas"])
+        print(f"{item['semaforo'].upper()} | {name} | {item.get('graph_status', '-')} | {reasons}")
+
+
+def cmd_obsolescencia(args: argparse.Namespace) -> None:
+    data = operational_status()
+    rows = list(data.get("projects", {}).values())
+    if args.proyecto:
+        rows = [item for item in rows if args.proyecto.casefold() in item["proyecto"].casefold()]
+    rows = [item for item in rows if item.get("obsoleto") or item.get("informativo")]
+    for item in rows:
+        state = "OBSOLETO" if item.get("obsoleto") else "INACTIVO"
+        print(f"{state} | {item['proyecto']} | {'; '.join(item.get('motivos') or item.get('informativo') or [])}")
+    if not rows:
+        print("Sin obsolescencia detectada")
+
+
+def cmd_resumen(args: argparse.Namespace) -> None:
+    subprocess.check_call([sys.executable, str(VITAMINIZE_SCRIPT)])
+    report = "Resumen Semanal" if args.semanal else "Resumen Diario"
+    root = MEMORIA_ROOT / "Reportes" / report
+    latest = max(root.glob("*.md"), key=lambda p: p.name)
+    print(latest)
+
+
+def cmd_mapa(args: argparse.Namespace) -> None:
+    if args.json:
+        path = DATA_ROOT / "project_dependencies.json"
+        print(path.read_text(encoding="utf-8") if path.exists() else "{}")
+        return
+    path = MEMORIA_ROOT / "Arquitectura" / "Mapa Corporativo de Dependencias.md"
+    print(path)
+
+
+def cmd_capturar(args: argparse.Namespace) -> None:
+    cmd = [sys.executable, str(CAPTURE_SCRIPT), "--texto", args.texto, "--tipo", args.tipo]
+    if args.titulo:
+        cmd.extend(["--titulo", args.titulo])
+    if args.proyecto:
+        cmd.extend(["--proyecto", args.proyecto])
+    subprocess.check_call(cmd)
+
+
+def cmd_portabilidad(args: argparse.Namespace) -> None:
+    cmd = [sys.executable, str(PORTABILITY_SCRIPT)]
+    if args.full_copy:
+        cmd.append("--full-copy")
+    subprocess.check_call(cmd)
+
+
+def cmd_doctor(args: argparse.Namespace) -> None:
+    subprocess.check_call([sys.executable, str(VITAMINIZE_SCRIPT)])
+    subprocess.check_call([sys.executable, str(TOOL_ROOT / "audit_obsidian_workspace.py")])
+    subprocess.check_call([sys.executable, str(PORTABILITY_SCRIPT)])
+    data = operational_status()
+    print("Doctor completado | " + " | ".join(f"{key}={value}" for key, value in sorted(data.get("summary", {}).items())))
+
+
+def cmd_deep(args: argparse.Namespace) -> None:
+    cmd=[sys.executable,str(DEEP_SCRIPT)]
+    if args.force: cmd.append('--force')
+    subprocess.check_call(cmd)
+
+
+def cmd_historia(args: argparse.Namespace) -> None:
+    cmd=[sys.executable,str(TEMPORAL_SCRIPT)]
+    if args.proyecto: cmd.extend(['--project',args.proyecto])
+    if args.desde: cmd.extend(['--since',args.desde])
+    if args.json: cmd.append('--json')
+    subprocess.check_call(cmd)
+    if not (args.proyecto or args.desde or args.json): print(MEMORIA_ROOT / 'Graphify' / 'Linea de Tiempo.md')
+
+
+def cmd_relaciones(args: argparse.Namespace) -> None:
+    cmd=[sys.executable,str(RELATION_SCRIPT),args.action]
+    if args.id: cmd.append(args.id)
+    if args.reason: cmd.extend(['--reason',args.reason])
+    subprocess.check_call(cmd)
+
+
+def cmd_integraciones(args: argparse.Namespace) -> None:
+    subprocess.check_call([sys.executable,str(INTEGRATION_SCRIPT)])
+    print(MEMORIA_ROOT / 'Integraciones' / 'Estado de Integraciones.md')
+
+
+def note_safe(value: str) -> str:
+    return re.sub(r'[\\/*?:"<>|#^[\]]', "-", value).strip().strip(".") or "Sin nombre"
+
+
+def slugify(value: str) -> str:
+    value = value.lower().strip()
+    value = re.sub(r"[^a-z0-9áéíóúñü]+", "-", value)
+    value = value.strip("-")
+    return value[:80] or "registro"
+
+
+def append_json_log(entry: dict) -> None:
+    if WORKLOG_JSON.exists():
+        try:
+            data = json.loads(WORKLOG_JSON.read_text(encoding="utf-8"))
+        except Exception:
+            data = []
+    else:
+        data = []
+    data.append(entry)
+    WORKLOG_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def append_project_memory(project_name: str, line: str) -> None:
+    note = VAULT_ROOT / "Proyectos Git" / f"{project_name}.md"
+    if not note.exists():
+        return
+    text = note.read_text(encoding="utf-8", errors="ignore")
+    start = "<!-- memoria-manual-start -->"
+    end = "<!-- memoria-manual-end -->"
+    if start not in text or end not in text:
+        return
+    before, rest = text.split(start, 1)
+    manual, after = rest.split(end, 1)
+    if line in manual:
+        return
+    manual = manual.strip()
+    if not manual or "Agregar aqui decisiones" in manual:
+        manual = line
+    else:
+        manual = f"{manual}\n{line}"
+    note.write_text(f"{before}{start}\n{manual}\n{end}{after}", encoding="utf-8")
+
+
+def ensure_worklog_index() -> None:
+    WORKLOG_DIR.mkdir(parents=True, exist_ok=True)
+    if not WORKLOG_INDEX.exists():
+        WORKLOG_INDEX.write_text(
+            "# Registro de Trabajo\n\n"
+            "Bitacora de aprendizajes, cambios efectivos, decisiones y validaciones capturadas durante el trabajo.\n\n"
+            "## Entradas\n",
+            encoding="utf-8",
+        )
+
+
+def projects(index: dict) -> list[dict]:
+    return index.get("projects") or []
+
+
+def find_project(index: dict, query: str) -> dict | None:
+    q = query.lower()
+    exact = [p for p in projects(index) if p["name"].lower() == q]
+    if exact:
+        return exact[0]
+    partial = [p for p in projects(index) if q in p["name"].lower()]
+    if partial:
+        return partial[0]
+    family = [p for p in projects(index) if q in p.get("family", "").lower()]
+    if family:
+        return family[0]
+    return None
+
+
+def cmd_buscar(args: argparse.Namespace) -> None:
+    index = load_index()
+    q = " ".join(args.query).lower()
+    rows = []
+    for p in projects(index):
+        haystack = "\n".join(
+            [
+                p.get("name", ""),
+                p.get("family", ""),
+                p.get("role", ""),
+                " ".join(p.get("signals", [])),
+                " ".join(p.get("services", [])),
+                " ".join(p.get("pages", [])),
+                " ".join(p.get("routes", [])),
+                " ".join(p.get("endpoints", [])),
+                " ".join(p.get("content_types", [])),
+            ]
+        ).lower()
+        if q in haystack:
+            rows.append(p)
+    for p in rows:
+        print(f"{p['name']} | {p['family']} | {p['role']} | {', '.join(p.get('signals') or [])}")
+    if not rows:
+        print("Sin resultados")
+
+
+def cmd_proyecto(args: argparse.Namespace) -> None:
+    index = load_index()
+    p = find_project(index, args.name)
+    if not p:
+        raise SystemExit("Proyecto no encontrado")
+    print(f"Proyecto: {p['name']}")
+    print(f"Familia: {p['family']}")
+    print(f"Rol: {p['role']}")
+    print(f"Ruta: {p['path']}")
+    print(f"Rama: {p.get('branch') or '-'}")
+    print(f"Stack: {', '.join(p.get('signals') or []) or '-'}")
+    print(f"Cambios locales: {len(p.get('dirty') or [])}")
+    print(f"Nota: {index['vault_root']}/Proyectos Git/{p['name']}.md")
+    print(f"Runbook: {index['vault_root']}/Runbooks/{p['name']}.md")
+    if p.get("scripts"):
+        print("\nComandos:")
+        for key, value in p["scripts"].items():
+            print(f"  {key}: {value}")
+    if p.get("routes"):
+        print("\nRutas destacadas:")
+        for item in p["routes"][:12]:
+            print(f"  {item}")
+    if p.get("endpoints"):
+        print("\nEndpoints destacados:")
+        for item in p["endpoints"][:12]:
+            print(f"  {item}")
+
+
+def cmd_cambios(args: argparse.Namespace) -> None:
+    index = load_index()
+    dirty = [p for p in projects(index) if p.get("dirty")]
+    for p in dirty:
+        print(f"{p['name']}: {len(p['dirty'])} cambio(s)")
+        if args.detalle:
+            for line in p["dirty"][:40]:
+                print(f"  {line}")
+    if not dirty:
+        print("Sin cambios locales detectados")
+
+
+def cmd_salud(args: argparse.Namespace) -> None:
+    index = load_index()
+    findings = index.get("health_findings") or []
+    if args.proyecto:
+        findings = [f for f in findings if f[1] == args.proyecto or args.proyecto.lower() in f[1].lower()]
+    for severity, project, category, detail in findings:
+        print(f"[{severity}] {project} - {category}: {detail}")
+    if not findings:
+        print("Sin hallazgos")
+
+
+def cmd_dependencias(args: argparse.Namespace) -> None:
+    index = load_index()
+    edges = index.get("dependency_edges") or []
+    for source, target, reason in edges:
+        if args.proyecto and args.proyecto not in (source, target):
+            continue
+        print(f"{source} -> {target} ({reason})")
+
+
+def cmd_rutas(args: argparse.Namespace) -> None:
+    index = load_index()
+    p = find_project(index, args.name)
+    if not p:
+        raise SystemExit("Proyecto no encontrado")
+    for key in ("routes", "endpoints", "services", "pages", "content_types"):
+        items = p.get(key) or []
+        print(f"\n{key}:")
+        for item in items[: args.limit]:
+            print(f"  {item}")
+
+
+def cmd_registrar(args: argparse.Namespace) -> None:
+    index = load_index()
+    p = find_project(index, args.proyecto)
+    if not p:
+        raise SystemExit("Proyecto no encontrado")
+
+    ensure_worklog_index()
+    now = datetime.now()
+    date = now.strftime("%Y-%m-%d")
+    timestamp = now.strftime("%Y-%m-%d %H:%M")
+    title = args.titulo.strip()
+    note_name = f"{date} - {p['name']} - {slugify(title)}.md"
+    note_path = WORKLOG_DIR / note_name
+    files = args.archivo or []
+    tags = args.tag or []
+    validation = args.validacion or "Pendiente o no aplica."
+    body = args.texto.strip()
+
+    lines = [
+        "---\n",
+        f"tipo: {json.dumps(args.tipo, ensure_ascii=False)}\n",
+        f"proyecto: {json.dumps(p['name'], ensure_ascii=False)}\n",
+        f"estado: {json.dumps(args.estado, ensure_ascii=False)}\n",
+        f"fecha: {date}\n",
+        "tags:\n",
+        "  - \"memoria\"\n",
+        "  - \"bitacora\"\n",
+        f"  - {json.dumps('proyecto/' + slugify(p['name']), ensure_ascii=False)}\n",
+        "---\n\n",
+        f"# {title}\n\n",
+    ]
+    lines.append(f"- Fecha: {timestamp}\n")
+    lines.append(f"- Proyecto: [[{p['name']}]]\n")
+    lines.append(f"- Tipo: {args.tipo}\n")
+    lines.append(f"- Estado: {args.estado}\n")
+    if tags:
+        lines.append("- Tags: " + ", ".join(f"`{tag}`" for tag in tags) + "\n")
+    lines.append("\n## Contexto\n")
+    lines.append(body + "\n")
+    lines.append("\n## Archivos relacionados\n")
+    if files:
+        for file in files:
+            lines.append(f"- `{file}`\n")
+    else:
+        lines.append("- No especificados.\n")
+    lines.append("\n## Validacion\n")
+    lines.append(validation + "\n")
+    lines.append("\n## Seguimiento\n")
+    lines.append(args.seguimiento or "Sin seguimiento pendiente.\n")
+    note_path.write_text("".join(lines), encoding="utf-8")
+
+    index_line = f"- {timestamp} · [[{note_path.stem}]] · [[{p['name']}]] · {args.tipo} · {title}\n"
+    current = WORKLOG_INDEX.read_text(encoding="utf-8", errors="ignore")
+    if index_line not in current:
+        WORKLOG_INDEX.write_text(current.rstrip() + "\n" + index_line, encoding="utf-8")
+
+    project_line = f"- {timestamp}: [[../Bitacora/{note_path.stem}|{title}]] ({args.tipo})."
+    append_project_memory(p["name"], project_line)
+
+    entry = {
+        "timestamp": timestamp,
+        "project": p["name"],
+        "type": args.tipo,
+        "status": args.estado,
+        "title": title,
+        "text": body,
+        "files": files,
+        "validation": validation,
+        "follow_up": args.seguimiento or "",
+        "note": f"$VAULT_ROOT/Memoria/{note_path.relative_to(VAULT_ROOT).as_posix()}",
+        "tags": tags,
+    }
+    append_json_log(entry)
+    print(str(note_path))
+
+
+def cmd_bitacora(args: argparse.Namespace) -> None:
+    if not WORKLOG_JSON.exists():
+        print("Sin registros")
+        return
+    data = json.loads(WORKLOG_JSON.read_text(encoding="utf-8"))
+    if args.proyecto:
+        data = [x for x in data if args.proyecto.lower() in x.get("project", "").lower()]
+    if args.tipo:
+        data = [x for x in data if args.tipo == x.get("type")]
+    for entry in data[-args.limit :]:
+        print(f"{entry['timestamp']} | {entry['project']} | {entry['type']} | {entry['title']}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="memoria", description="Herramienta local de memoria de proyectos")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    sub.add_parser("refresh", help="Regenerar memoria").set_defaults(func=lambda args: refresh())
+    sub.add_parser("refresh-grafo", help="Regenerar memoria y grafo").set_defaults(func=lambda args: refresh_graph())
+
+    p = sub.add_parser("buscar", help="Buscar texto en el indice")
+    p.add_argument("query", nargs="+")
+    p.set_defaults(func=cmd_buscar)
+
+    p = sub.add_parser("proyecto", help="Resumen de un proyecto")
+    p.add_argument("name")
+    p.set_defaults(func=cmd_proyecto)
+
+    p = sub.add_parser("cambios", help="Listar cambios locales detectados")
+    p.add_argument("--detalle", action="store_true")
+    p.set_defaults(func=cmd_cambios)
+
+    p = sub.add_parser("salud", help="Listar hallazgos de salud")
+    p.add_argument("--proyecto")
+    p.set_defaults(func=cmd_salud)
+
+    p = sub.add_parser("dependencias", help="Listar dependencias inferidas")
+    p.add_argument("--proyecto")
+    p.set_defaults(func=cmd_dependencias)
+
+    p = sub.add_parser("rutas", help="Listar rutas, endpoints y artefactos")
+    p.add_argument("name")
+    p.add_argument("--limit", type=int, default=40)
+    p.set_defaults(func=cmd_rutas)
+
+    p = sub.add_parser("registrar", help="Registrar aprendizaje, decision, cambio o validacion")
+    p.add_argument("proyecto")
+    p.add_argument("--tipo", choices=["aprendizaje", "decision", "cambio", "bugfix", "validacion", "arquitectura"], default="aprendizaje")
+    p.add_argument("--titulo", required=True)
+    p.add_argument("--texto", required=True)
+    p.add_argument("--estado", default="confirmado")
+    p.add_argument("--archivo", action="append")
+    p.add_argument("--validacion")
+    p.add_argument("--seguimiento")
+    p.add_argument("--tag", action="append")
+    p.set_defaults(func=cmd_registrar)
+
+    p = sub.add_parser("bitacora", help="Listar registros capturados")
+    p.add_argument("--proyecto")
+    p.add_argument("--tipo")
+    p.add_argument("--limit", type=int, default=20)
+    p.set_defaults(func=cmd_bitacora)
+
+    p = sub.add_parser("contexto", help="Mostrar contexto compacto para IA")
+    p.add_argument("name")
+    p.add_argument("--path", action="store_true")
+    p.set_defaults(func=cmd_contexto)
+
+    p = sub.add_parser("semaforo", help="Mostrar estado operativo de proyectos")
+    p.add_argument("proyecto", nargs="?")
+    p.set_defaults(func=cmd_semaforo)
+
+    p = sub.add_parser("obsolescencia", help="Mostrar memoria o snapshots atrasados")
+    p.add_argument("proyecto", nargs="?")
+    p.set_defaults(func=cmd_obsolescencia)
+
+    p = sub.add_parser("resumen", help="Regenerar resumen diario o semanal")
+    group = p.add_mutually_exclusive_group()
+    group.add_argument("--diario", action="store_true")
+    group.add_argument("--semanal", action="store_true")
+    p.set_defaults(func=cmd_resumen)
+
+    p = sub.add_parser("mapa", help="Abrir o exportar dependencias corporativas")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=cmd_mapa)
+
+    p = sub.add_parser("capturar", help="Clasificar una captura en la bandeja")
+    p.add_argument("--texto", required=True)
+    p.add_argument("--titulo")
+    p.add_argument("--proyecto")
+    p.add_argument("--tipo", default="auto", choices=["auto", "aprendizaje", "decision", "incidente", "bugfix", "arquitectura", "runbook", "tarea", "referencia"])
+    p.set_defaults(func=cmd_capturar)
+
+    p = sub.add_parser("portabilidad", help="Auditar o simular la migracion del baul")
+    p.add_argument("--full-copy", action="store_true")
+    p.set_defaults(func=cmd_portabilidad)
+
+    sub.add_parser("doctor", help="Ejecutar salud, semaforo y portabilidad").set_defaults(func=cmd_doctor)
+
+    p=sub.add_parser('deep',help='Procesamiento profundo incremental de documentos'); p.add_argument('--force',action='store_true'); p.set_defaults(func=cmd_deep)
+    p=sub.add_parser('historia',help='Consultar historia temporal por proyecto o fecha'); p.add_argument('proyecto',nargs='?'); p.add_argument('--desde'); p.add_argument('--json',action='store_true'); p.set_defaults(func=cmd_historia)
+    p=sub.add_parser('relaciones',help='Construir, confirmar o rechazar relaciones'); p.add_argument('action',choices=['build','confirm','reject'],default='build',nargs='?'); p.add_argument('id',nargs='?'); p.add_argument('--reason',default=''); p.set_defaults(func=cmd_relaciones)
+    sub.add_parser('integraciones',help='Sincronizar espejos externos de solo lectura').set_defaults(func=cmd_integraciones)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

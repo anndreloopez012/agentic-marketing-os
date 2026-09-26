@@ -1,0 +1,23 @@
+{
+  "projects_roots": [
+    "~/Documents/PROYECTOS",
+    "~/Documents/Playground"
+  ],
+  "graph_compatibility_roots": {
+    "PROYECTOS": "~/Documents/PROYECTOS",
+    "Playground": "~/Documents/Playground"
+  },
+  "codex_root": "~/.codex",
+  "claude_root": "~/.claude",
+  "graphify_bin": "~/.local/bin/graphify",
+  "project_family_overrides": {},
+  "vitaminado": {
+    "inactive_days": 180,
+    "summary_daily": true,
+    "summary_weekly": true,
+    "smart_capture": true,
+    "portability_full_copy_on_demand": true
+  },
+  "antigravity_root": "~/.gemini/antigravity",
+  "antigravity_skills": "~/.gemini/config/skills"
+}

@@ -1,0 +1,191 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+from portable_paths import DATA_ROOT
+
+TOOL_ROOT = Path(__file__).resolve().parent
+INDEX_PATH = DATA_ROOT / "memoria_index.json"
+REFRESH_SCRIPT = TOOL_ROOT / "refresh_project_memory.py"
+
+ROUTER_KEYWORDS = {
+    "brand-identity": ["marca", "branding", "logo", "identidad", "posicionamiento", "paleta"],
+    "marketing-ia-expert": ["marketing", "estrategia", "campaña", "cliente", "buyer", "posicionamiento"],
+    "copywriting-pro": ["copy", "landing", "headline", "cta", "anuncio", "conversion"],
+    "content-strategy": ["contenido", "calendario", "pilares", "blog", "editorial"],
+    "paid-ads": ["ads", "anuncios", "meta", "google ads", "pauta", "campaña"],
+    "seo-expert": ["seo", "keywords", "ranking", "busqueda", "search"],
+    "social-media-design": ["post", "carrusel", "instagram", "thumbnail", "visual"],
+    "frontend-design": ["frontend", "ui", "interfaz", "pantalla", "web", "app"],
+    "accessibility": ["accesibilidad", "wcag", "a11y", "screen reader", "teclado"],
+    "shadcn": ["shadcn", "componentes", "ui library"],
+    "vercel-react-best-practices": ["react", "next", "componente", "performance react"],
+    "tailwind-css-patterns": ["tailwind", "css", "responsive", "layout"],
+    "n8n-workflow-patterns": ["n8n", "workflow", "automatizacion", "flujo"],
+    "n8n-node-configuration": ["nodo", "node", "configuracion n8n"],
+    "n8n-expression-syntax": ["expresion", "$json", "$node", "{{", "mapping"],
+    "n8n-validation-expert": ["validacion n8n", "validation", "warning"],
+    "n8n-code-javascript": ["javascript n8n", "code node", "js"],
+    "n8n-code-python": ["python n8n", "python code"],
+    "imagegen": ["imagen", "editar imagen", "generar imagen", "logo visual"],
+    "remotion-best-practices": ["remotion", "video react", "programmatic video"],
+    "higgsfield": ["higgsfield", "ai video", "video ia"],
+    "video-continuity": ["continuidad", "campaña visual", "mismo personaje"],
+    "nodejs-best-practices": ["node", "node.js", "backend"],
+    "nodejs-express-server": ["express", "api", "servidor"],
+    "strapi-workspace-expert": ["strapi", "cms", "content-type"],
+    "supabase": ["supabase", "postgres", "rls"],
+    "stripe-best-practices": ["stripe", "pago", "checkout", "webhook stripe"],
+    "cloudflare-dns": ["cloudflare", "dns", "dominio"],
+    "deploy-to-vercel": ["deploy", "vercel", "desplegar"],
+    "project-memory": ["memoria", "obsidian", "contexto", "proyecto local"],
+    "debug-mode": ["bug dificil", "intermitente", "instrumentar"],
+    "debugging-code": ["debug", "breakpoint", "depurar"],
+    "vitest": ["vitest", "test", "unit test"],
+    "accounting-audit-expert": ["auditoria", "contabilidad", "control"],
+    "financial-reporting": ["reporte financiero", "cash flow", "p&l", "kpi financiero"],
+    "security-audit": ["seguridad", "vulnerabilidad", "vulnerability", "security", "audit", "pentest", "pen-test", "cve", "owasp", "auth bypass", "injection", "auditoria de seguridad"],
+}
+
+
+def refresh() -> None:
+    subprocess.check_call([sys.executable, str(REFRESH_SCRIPT)])
+
+
+def load_index() -> dict:
+    if not INDEX_PATH.exists():
+        refresh()
+    try:
+        return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise SystemExit(f"No se pudo leer {INDEX_PATH}: {exc}")
+
+
+def all_skills(index: dict) -> list[dict]:
+    return index.get("ai_skills") or []
+
+
+def norm(text: str) -> str:
+    return re.sub(r"\s+", " ", text.lower()).strip()
+
+
+def score_skill(skill: dict, query: str) -> int:
+    haystack = norm(" ".join([skill.get("name", ""), skill.get("category", ""), skill.get("description", "")]))
+    q = norm(query)
+    score = 0
+    for token in re.findall(r"[\wáéíóúñü.-]+", q):
+        if token in haystack:
+            score += 2
+    for keyword in ROUTER_KEYWORDS.get(skill.get("name", ""), []):
+        if keyword in q:
+            score += 8
+    if skill.get("name", "").lower() in q:
+        score += 20
+    return score
+
+
+def format_skill(skill: dict) -> str:
+    desc = (skill.get("description") or "").replace("\n", " ")
+    if len(desc) > 160:
+        desc = desc[:157] + "..."
+    return f"{skill['ai']} | {skill['name']} | {skill['category']} | {skill['primary_path']} | {desc}"
+
+
+def cmd_buscar(args: argparse.Namespace) -> None:
+    rows = all_skills(load_index())
+    query = " ".join(args.query)
+    scored = []
+    for skill in rows:
+        if args.ia and skill.get("ai", "").lower() != args.ia.lower():
+            continue
+        score = score_skill(skill, query)
+        if score or norm(query) in norm(json.dumps(skill, ensure_ascii=False)):
+            scored.append((score, skill))
+    for _, skill in sorted(scored, key=lambda item: (-item[0], item[1]["ai"], item[1]["name"]))[: args.limit]:
+        print(format_skill(skill))
+    if not scored:
+        print("Sin resultados")
+
+
+def cmd_recomendar(args: argparse.Namespace) -> None:
+    rows = all_skills(load_index())
+    query = " ".join(args.texto)
+    best_by_name: dict[str, tuple[int, dict, set[str]]] = {}
+    grouped: dict[str, list[dict]] = defaultdict(list)
+    for skill in rows:
+        if args.ia and skill.get("ai", "").lower() != args.ia.lower():
+            continue
+        grouped[skill["name"]].append(skill)
+    for name, installs in grouped.items():
+        score = max(score_skill(skill, query) for skill in installs)
+        if score <= 0:
+            continue
+        chosen = sorted(installs, key=lambda item: item["ai"])[0]
+        best_by_name[name] = (score, chosen, {item["ai"] for item in installs})
+    ranked = sorted(best_by_name.values(), key=lambda item: (-item[0], item[1]["name"]))[: args.limit]
+    for score, skill, ais in ranked:
+        print(f"{score:02d} | {skill['name']} | {', '.join(sorted(ais))} | {skill['category']} | {skill['primary_path']}")
+    if not ranked:
+        print("Sin recomendacion clara")
+
+
+def cmd_comparar(args: argparse.Namespace) -> None:
+    rows = [skill for skill in all_skills(load_index()) if args.name.lower() in skill["name"].lower()]
+    if not rows:
+        print("Sin resultados")
+        return
+    by_name: dict[str, list[dict]] = defaultdict(list)
+    for skill in rows:
+        by_name[skill["name"]].append(skill)
+    for name, installs in sorted(by_name.items()):
+        ais = ", ".join(sorted(skill["ai"] for skill in installs))
+        print(f"{name}: {ais}")
+        for skill in sorted(installs, key=lambda item: item["ai"]):
+            print(f"  {skill['ai']}: {skill['primary_path']}")
+
+
+def cmd_resumen(args: argparse.Namespace) -> None:
+    rows = all_skills(load_index())
+    print("Por IA:")
+    for ai, count in Counter(skill["ai"] for skill in rows).most_common():
+        print(f"  {ai}: {count}")
+    print("Por categoria:")
+    for category, count in Counter(skill["category"] for skill in rows).most_common():
+        print(f"  {category}: {count}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="skills", description="Buscar y recomendar skills instaladas por IA")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    p = sub.add_parser("buscar", help="Buscar skills por texto")
+    p.add_argument("query", nargs="+")
+    p.add_argument("--ia", choices=["Codex", "Claude", "Antigravity"])
+    p.add_argument("--limit", type=int, default=20)
+    p.set_defaults(func=cmd_buscar)
+
+    p = sub.add_parser("recomendar", help="Recomendar skills para una solicitud")
+    p.add_argument("texto", nargs="+")
+    p.add_argument("--ia", choices=["Codex", "Claude", "Antigravity"])
+    p.add_argument("--limit", type=int, default=8)
+    p.set_defaults(func=cmd_recomendar)
+
+    p = sub.add_parser("comparar", help="Comparar disponibilidad de una skill por IA")
+    p.add_argument("name")
+    p.set_defaults(func=cmd_comparar)
+
+    sub.add_parser("resumen", help="Conteos por IA y categoria").set_defaults(func=cmd_resumen)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()
