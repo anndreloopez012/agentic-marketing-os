@@ -28,6 +28,7 @@
    - [Audio, Locución y Efectos Sonoros (ElevenLabs)](#7-audio-locución-y-efectos-sonoros-elevenlabs)
    - [Navegación e Inspección Web (Agent-Browser)](#8-navegación-e-inspección-web-agent-browser)
    - [Memoria Continua y Grafo de Conocimiento (Obsidian + Graphify)](#9-memoria-continua-y-grafo-de-conocimiento-obsidian--graphify)
+   - [Scraping Web e Inteligencia Competitiva en Redes](#10-scraping-web-e-inteligencia-competitiva-en-redes-sociales)
 6. [Flujo de Trabajo Cotidiano (End-to-End)](#-flujo-de-trabajo-cotidiano-end-to-end)
 7. [Protocolo Multi-Agente y Estrategia Git](#-protocolo-multi-agente-y-estrategia-git)
 8. [Derechos de Autor, Atribuciones y Licencia](#-derechos-de-autor-atribuciones-y-licencia)
@@ -303,6 +304,15 @@ Pequeñas habilidades quirúrgicas para transformar una interfaz en un clic:
 | **graphify** | `skills/memory/graphify` | Convierte cualquier base de código o proyecto en un grafo de conocimiento persistente con detección de comunidades y comandos de consulta (`graphify query`, `graphify path`, `graphify explain`). | *"Explica la arquitectura de este proyecto"*, *"¿Qué componentes dependen de este módulo?"*, *"Actualiza el grafo de dependencias"*. |
 | **project-memory** | `skills/memory/project-memory` | Conexión e integración continua con el sistema de notas y bitácoras del Obsidian Vault. | *"Consulta la memoria del proyecto"*, *"Registra este cambio en la bitácora"*. |
 | **obsidian-graph-replicator**| `skills/memory/obsidian-graph-replicator` | Visualización y replicación del grafo de conocimiento en interfaces interactivas (Nebula Graph). | *"Genera una vista interactiva del grafo"*. |
+
+---
+
+### 10. Scraping Web e Inteligencia Competitiva en Redes Sociales
+
+| Habilidad | Ubicación | Descripción y Propósito | Activador / Cuándo usar |
+|---|---|---|---|
+| **web-scraping-pro** | `skills/research-intelligence/web-scraping-pro` | Extracción de datos web estáticos y dinámicos, scraping de catálogos y precios de rivales, rastreo de sitemaps XML y conversión de artículos web a Markdown limpio libre de anuncios y código para alimentar LLMs. | *"Extrae los precios de este competidor"*, *"Descarga este artículo en Markdown limpio"*, *"Rastrea el sitemap de esta web"*, *"Scrapea esta tienda online"*. |
+| **social-competitor-intelligence** | `skills/research-intelligence/social-competitor-intelligence` | Espionaje ético e inteligencia en redes sociales: Meta Ad Library (anuncios ganadores por longevidad), TikTok Creative Center, YouTube (transcripciones y miniaturas), LinkedIn (carruseles y ganchos B2B) y detección de reclamos de clientes rivales para crear contra-ofertas. | *"Espía los anuncios activos de mi competencia en Meta"*, *"Analiza los videos más virales de este rival en TikTok"*, *"Qué quejas tienen los clientes de este competidor"*, *"Crea una matriz competitiva"*. |
 
 ---
 
