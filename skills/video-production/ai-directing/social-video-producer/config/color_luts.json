@@ -1,0 +1,34 @@
+{
+  "color_presets": {
+    "commercial_punch": {
+      "name": "Commercial Vibrant Punch",
+      "description": "Colores vivos, contraste enriquecido y negros profundos ideales para feeds de Instagram y TikTok.",
+      "ffmpeg_filter": "eq=contrast=1.08:brightness=0.02:saturation=1.15,unsharp=5:5:0.8:5:5:0.0"
+    },
+    "tech_clean": {
+      "name": "Modern Tech & Corporate Clean",
+      "description": "Tonos neutros equilibrados con un ligero realce de blancos y nitidez para LinkedIn y SaaS.",
+      "ffmpeg_filter": "eq=contrast=1.05:brightness=0.01:saturation=1.05,unsharp=3:3:0.6:3:3:0.0"
+    },
+    "warm_lifestyle": {
+      "name": "Warm Golden Lifestyle",
+      "description": "Calidez en las altas luces y tonos piel atractivos para moda, comida y hospitalidad.",
+      "ffmpeg_filter": "eq=contrast=1.04:brightness=0.02:saturation=1.1,colorbalance=rs=0.05:gs=0.02:bs=-0.04"
+    },
+    "luxury_dark": {
+      "name": "Luxury Moody & Dark",
+      "description": "Look cinematográfico oscuro de alta gama con sombras profundas y saturación contenida.",
+      "ffmpeg_filter": "eq=contrast=1.15:brightness=-0.03:saturation=0.95,colorbalance=rs=-0.02:gs=-0.01:bs=0.04"
+    },
+    "film_vintage": {
+      "name": "Subtle 35mm Analog Film",
+      "description": "Gradación suave estilo película analógica con un ligero grano y tonos cálidos.",
+      "ffmpeg_filter": "eq=contrast=1.02:brightness=0.01:saturation=1.05,colorbalance=rs=0.04:gs=0.01:bs=-0.03,noise=c1s=3:c0f=u"
+    },
+    "none": {
+      "name": "Passthrough (Sin modificar)",
+      "description": "Mantiene el color original exacto generado por Veo.",
+      "ffmpeg_filter": "null"
+    }
+  }
+}
