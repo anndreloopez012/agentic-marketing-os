@@ -58,6 +58,10 @@ Siempre que el usuario solicite crear una campaña, diseñar una interfaz, optim
 ### E. Inspección y Automatización Web
 - **Agent-Browser**: Usar `agent-browser` para navegar sitios web en vivo, extraer datos del DOM, capturar pantallas, auditar accesibilidad con axe-core y verificar formularios.
 
+### F. Scraping Web e Inteligencia Competitiva en Redes
+- **Web Scraping**: Usar `web-scraping-pro` para extraer catálogos, monitorear precios, rastrear sitemaps XML y convertir páginas a Markdown limpio sin ruido.
+- **Espionaje en Redes**: Usar `social-competitor-intelligence` para analizar la Biblioteca de Anuncios de Meta (anuncios ganadores por longevidad), TikTok Creative Center, miniaturas/títulos de YouTube y quejas de clientes rivales para crear matrices competitivas y contra-ofertas irresistibles.
+
 ---
 
 ## 3. Regla Mandatoria de Sincronización y Cierre de Cambios

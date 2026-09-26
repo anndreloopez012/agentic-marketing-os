@@ -19,6 +19,7 @@ Este archivo instruye a **Claude Code** para operar en perfecta sincronía con *
    - **Diseño & UI**: `frontend-design`, `impeccable`, `ui-ux-pro-max`, `design-system-builder`, `tailwind-css-patterns`, `shadcn`. Micro-pulido con `polish`, `typeset`, `delight`, `animate`.
    - **Video & Audio**: Remotion (`remotion` con reglas en `rules/`), HyperFrames (`hyperframes-core`, `product-launch-video`, etc.), `google-flow-veo-director`, `elevenlabs`.
    - **Navegación Web**: `agent-browser` para interactuar con páginas, tomar capturas y verificar resultados.
+   - **Scraping e Inteligencia de Competidores**: `web-scraping-pro` (extracción a Markdown, precios, sitemaps) y `social-competitor-intelligence` (espionaje en Meta Ad Library, TikTok Creative Center, YouTube y LinkedIn).
 
 4. **Regla de Cierre y Sincronización**:
    - Al finalizar, ejecuta:
