@@ -1,0 +1,43 @@
+{
+  "motion_presets": {
+    "subtle_dolly_in": {
+      "name": "Subtle Dolly In (Cinematic Push)",
+      "prompt_fragment": "Smooth, slow cinematic dolly in push camera motion. The camera glides forward very gently. High optical stability, shallow depth of field, natural lighting, sharp focus on subject, continuous unbroken motion, no jitter, no warping, 24fps.",
+      "best_for": ["product_reveal", "portrait_hook", "focused_branding"],
+      "recommended_duration": 4
+    },
+    "cinematic_orbit": {
+      "name": "Cinematic Arc / Orbital Pan",
+      "prompt_fragment": "Smooth, continuous 15-degree slow orbital arc camera movement panning around the subject. Consistent framing, clean horizon line, soft ambient reflections, perfectly stable motion, cinematic lighting, 24fps.",
+      "best_for": ["3d_product_showcase", "luxury_goods", "dynamic_architecture"],
+      "recommended_duration": 5
+    },
+    "pedestal_reveal": {
+      "name": "Pedestal Up (Vertical Reveal)",
+      "prompt_fragment": "Graceful vertical pedestal up camera movement rising steadily from bottom to top. Revealing the upper details smoothly. Fluid crane-like stabilization, cinematic lighting, no camera roll, steady vertical velocity, 24fps.",
+      "best_for": ["infographics", "tall_packaging", "app_interfaces", "lifestyle_fashion"],
+      "recommended_duration": 4
+    },
+    "horizontal_truck": {
+      "name": "Horizontal Truck Right (Parallax Pan)",
+      "prompt_fragment": "Cinematic slow horizontal tracking shot moving smoothly from left to right. Natural multi-plane parallax depth between foreground and background. Locked gimbal stabilization, soft studio illumination, 24fps.",
+      "best_for": ["landscape_broll", "multi_product_lineup", "narrative_sequence"],
+      "recommended_duration": 4
+    },
+    "ambient_light_sweep": {
+      "name": "Static Camera with Dynamic Light Sweep",
+      "prompt_fragment": "Static camera angle with zero camera translation. Rich dynamic lighting sweep passing across the subject: warm volumetric golden-hour ray moving softly across the scene. Subtle ambient particles in air, no morphing, no distortion, 24fps.",
+      "best_for": ["text_heavy_slides", "static_posters", "minimalist_art"],
+      "recommended_duration": 4
+    },
+    "floating_macro": {
+      "name": "Floating Macro Detail",
+      "prompt_fragment": "Ultra slow-motion macro cinematic shot with micro-depth drift. Subtle organic breathing motion, crisp razor-sharp textural details, creamy bokeh background, studio fill lighting, 24fps.",
+      "best_for": ["food_beverage", "textures", "jewelry", "cosmetics"],
+      "recommended_duration": 5
+    }
+  },
+  "negative_prompts": [
+    "text mutation, blurry typography, melting letters, morphing shapes, jitter, glitch, stutter, duplicate limbs, warped faces, cartoonish distortion, erratic camera shakes, sudden cuts, low quality, artifacts"
+  ]
+}

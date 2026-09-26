@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-12",
+  "plugins": {
+    "dataview": {
+      "release": "0.5.70",
+      "manifest_version": "0.5.68",
+      "source": "https://github.com/blacksmithgu/obsidian-dataview/releases/tag/0.5.70",
+      "sha256_main": "6bb1cf7010afad830e73575fca0e2bfbd3279c562e3d9d24f2d2f45161eb7d00"
+    },
+    "omnisearch": {
+      "release": "1.30.1",
+      "manifest_version": "1.30.1",
+      "source": "https://github.com/scambier/obsidian-omnisearch/releases/tag/1.30.1",
+      "sha256_main": "cbbb3c5fab827e87f40c382672389b8e5e11511bf693611cf789f4334d7fc6dd"
+    }
+  }
+}

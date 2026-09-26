@@ -1,0 +1,21 @@
+{
+  "projects_roots": [
+    "~/Documents/MarketingProjects"
+  ],
+  "graph_compatibility_roots": {
+    "MarketingProjects": "~/Documents/MarketingProjects"
+  },
+  "codex_root": "~/.codex",
+  "claude_root": "~/.claude",
+  "antigravity_root": "~/.gemini/antigravity",
+  "antigravity_skills": "~/.gemini/config/skills",
+  "graphify_bin": "~/.local/bin/graphify",
+  "project_family_overrides": {},
+  "vitaminado": {
+    "inactive_days": 180,
+    "summary_daily": true,
+    "summary_weekly": true,
+    "smart_capture": true,
+    "portability_full_copy_on_demand": true
+  }
+}

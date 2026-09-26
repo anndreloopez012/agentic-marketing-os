@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id": "campuslands", "label": "Campuslands", "community": 0, "group": "Brand"},
+    {"id": "marketing-digital-ia", "label": "marketing-digital-ia", "community": 1, "group": "App"},
+    {"id": "indice-skills", "label": "Indice de Skills Codex", "community": 2, "group": "Memory"},
+    {"id": "graphify", "label": "Graphify", "community": 2, "group": "Memory"},
+    {"id": "visual-med", "label": "VISUAL-MED-IA", "community": 3, "group": "Project"},
+    {"id": "sistema-firmas", "label": "SISTEMA FIRMAS", "community": 4, "group": "Project"},
+    {"id": "saas-alcore", "label": "saas-alcore-frontend", "community": 5, "group": "Frontend"},
+    {"id": "runbooks", "label": "Runbooks", "community": 6, "group": "Docs"}
+  ],
+  "links": [
+    {"source": "campuslands", "target": "marketing-digital-ia", "relation": "owns"},
+    {"source": "marketing-digital-ia", "target": "graphify", "relation": "uses"},
+    {"source": "graphify", "target": "indice-skills", "relation": "indexes"},
+    {"source": "visual-med", "target": "graphify", "relation": "related"},
+    {"source": "sistema-firmas", "target": "runbooks", "relation": "documented"},
+    {"source": "saas-alcore", "target": "runbooks", "relation": "documented"},
+    {"source": "campuslands", "target": "indice-skills", "relation": "references"}
+  ]
+}
