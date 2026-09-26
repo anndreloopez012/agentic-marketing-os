@@ -1,0 +1,13 @@
+[VIDEO PROMPT - GEMINI VEO / FLOW]
+Aspect Ratio: 9:16 (Reel/Story)
+Duration: 6s | FPS: 24fps
+Subject: [Nombre de Mascota], the official 3D mascot of ALCORE, [rasgos físicos clave, vestimenta y accesorios].
+Environment: [Entorno institucional o escenario tecnológico].
+Action: [Acción única y fluida de la mascota en 4 a 6 segundos].
+Camera: [Movimiento cinemático de cámara: Dolly In, Pan suave o 30-degree orbit].
+Lighting: Volumetric studio lighting with deep navy and cyan ambient fill, crisp rim light on edges.
+Style: 3D animated feature film render, Pixar and DreamWorks character quality, tactile materials, ray-traced reflections, ultra-sharp 4K detail.
+Image Reference Path: [Ruta local al archivo JPG de la mascota]
+
+GUION DE LOCUCION (ESPAÑOL - CERO EMOJIS):
+"[Texto conciso de 15 a 25 segundos para narración institucional]"
