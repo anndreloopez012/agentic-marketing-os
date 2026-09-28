@@ -1,0 +1,6 @@
+interface:
+  display_name: "Client Management"
+  short_description: "Gestión profesional de clientes — comunicación, expectativas…"
+  default_prompt: "Usa $client-management para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

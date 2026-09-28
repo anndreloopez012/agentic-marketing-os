@@ -1,0 +1,6 @@
+interface:
+  display_name: "General Video"
+  short_description: "Author or edit a custom HyperFrames composition when no…"
+  default_prompt: "Usa $general-video para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

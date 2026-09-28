@@ -1,0 +1,6 @@
+interface:
+  display_name: "Higgsfield"
+  short_description: "AI video generation with Higgsfield — character lock…"
+  default_prompt: "Usa $higgsfield para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

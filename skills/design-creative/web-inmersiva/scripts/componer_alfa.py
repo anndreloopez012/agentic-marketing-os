@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Recupera el canal alfa de Kivo a partir de dos videos alineados:
+Recupera el canal alfa de la mascota a partir de dos videos alineados:
 
-  original   el clip tal como salio del generador (Kivo sobre su fondo)
+  original   el clip tal como salio del generador (la mascota sobre su fondo)
   recortado  el mismo clip con el fondo quitado, pero entregado SIN alfa:
-             el recortador compone a Kivo sobre negro puro (= alfa * color)
+             el recortador compone a la mascota sobre negro puro (= alfa * color)
 
 Con los dos se reconstruye un RGBA limpio:
   1. mascara  = pixeles del recortado con brillo; se rellenan los huecos
@@ -133,7 +133,7 @@ def componer(original, recortado):
     alfa = np.clip(desenfoque_caja(alfa, 1) * 0.5 + alfa * 0.5, 0.0, 1.0)
     alfa[alfa < 0.04] = 0.0
 
-    # Fondo estimado bajo Kivo: promedio del fondo visible alrededor.
+    # Fondo estimado bajo la mascota: promedio del fondo visible alrededor.
     peso = (~dilatar(mascara, 4)).astype(np.float64)
     suma = desenfoque_caja(o * peso[..., None], 36)
     norma = desenfoque_caja(peso, 36)[..., None]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hyperframes CLI"
+  short_description: "Use the HyperFrames CLI development loop: init, add, catalog…"
+  default_prompt: "Usa $hyperframes-cli para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

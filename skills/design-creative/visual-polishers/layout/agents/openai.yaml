@@ -1,0 +1,6 @@
+interface:
+  display_name: "Layout"
+  short_description: "Improve layout, spacing, and visual rhythm."
+  default_prompt: "Usa $layout para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

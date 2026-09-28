@@ -1,0 +1,6 @@
+interface:
+  display_name: "Social Media Design"
+  short_description: "Diseño visual para redes sociales — specs, templates…"
+  default_prompt: "Usa $social-media-design para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

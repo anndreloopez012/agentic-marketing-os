@@ -1,8 +1,8 @@
 interface:
   display_name: "Project Memory"
-  short_description: "Use Obsidian memory for local projects"
+  short_description: "Usa tu memoria de Obsidian como contexto de proyectos"
   brand_color: "#2563EB"
-  default_prompt: "Use $project-memory to load context for my local projects before making changes."
+  default_prompt: "Usa $project-memory para cargar el contexto de mi proyecto antes de hacer cambios."
 
 policy:
   allow_implicit_invocation: true

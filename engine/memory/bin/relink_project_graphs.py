@@ -16,7 +16,7 @@ def expand(value: str) -> Path:
 def main() -> int:
     roots = SETTINGS.get(
         "graph_compatibility_roots",
-        {"PROYECTOS": "~/Documents/PROYECTOS", "Playground": "~/Documents/Playground"},
+        {"MarketingProjects": "~/Documents/MarketingProjects"},
     )
     linked = 0
     skipped = 0

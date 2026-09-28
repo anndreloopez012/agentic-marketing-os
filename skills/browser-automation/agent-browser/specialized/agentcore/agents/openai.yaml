@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agentcore"
+  short_description: "Run agent-browser on AWS Bedrock AgentCore cloud browsers."
+  default_prompt: "Usa $agentcore para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

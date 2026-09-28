@@ -1,0 +1,6 @@
+interface:
+  display_name: "Overdrive"
+  short_description: "Pushes interfaces past conventional limits with technically…"
+  default_prompt: "Usa $overdrive para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

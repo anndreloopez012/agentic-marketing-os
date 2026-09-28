@@ -1,0 +1,6 @@
+interface:
+  display_name: "Webmcp Gen"
+  short_description: "Build and validate experimental WebMCP tools for an existing…"
+  default_prompt: "Usa $webmcp-gen para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

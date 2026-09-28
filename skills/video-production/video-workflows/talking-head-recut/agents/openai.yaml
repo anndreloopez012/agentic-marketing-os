@@ -1,0 +1,6 @@
+interface:
+  display_name: "Talking Head Recut"
+  short_description: "Package an existing talking-head / interview / podcast video…"
+  default_prompt: "Usa $talking-head-recut para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

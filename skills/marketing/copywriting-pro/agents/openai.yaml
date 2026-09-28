@@ -1,0 +1,6 @@
+interface:
+  display_name: "Copywriting Pro"
+  short_description: "Copywriting persuasivo — landing pages, ads, emails y páginas…"
+  default_prompt: "Usa $copywriting-pro para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Graphify"
+  short_description: "Any question about a codebase, its architecture, file…"
+  default_prompt: "Usa $graphify para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

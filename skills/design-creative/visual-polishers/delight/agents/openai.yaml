@@ -1,0 +1,6 @@
+interface:
+  display_name: "Delight"
+  short_description: "Add moments of joy, personality, and unexpected touches that…"
+  default_prompt: "Usa $delight para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

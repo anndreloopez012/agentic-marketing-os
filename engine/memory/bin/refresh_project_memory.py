@@ -295,17 +295,21 @@ def family(name: str) -> str:
     override = (SETTINGS.get("project_family_overrides") or {}).get(name)
     if override:
         return str(override)
+    # Familias genericas por palabra clave del nombre de carpeta. Para agrupar
+    # proyectos propios usar "project_family_overrides" en config/settings.json.
     mapping = [
-        ("contraloria", "Contraloria"),
-        ("core-signature", "Core Signature"),
-        ("core-strapi", "Core Signature"),
-        ("usac-editorial", "USAC Editorial"),
-        ("renap", "RENAP"),
-        ("tec-infoapp", "TEC InfoApp"),
+        ("landing", "Landing Pages"),
+        ("web", "Sitios Web"),
+        ("campana", "Campanas"),
+        ("campaign", "Campanas"),
+        ("video", "Video"),
+        ("instagram", "Redes Sociales"),
+        ("social", "Redes Sociales"),
+        ("marca", "Marca"),
+        ("brand", "Marca"),
         ("crm", "CRM / Ventas"),
-        ("softplus", "Softplus"),
-        ("saas-alcore", "SaaS Alcore"),
-        ("store", "Store"),
+        ("store", "Tienda"),
+        ("tienda", "Tienda"),
     ]
     for key, label in mapping:
         if key in name:
@@ -847,7 +851,7 @@ def render_project(project: dict, all_projects: list[dict]) -> str:
 def render_readme(projects: list[dict], nongit_other: list[str]) -> str:
     now = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
     lines = ["# Memoria - Proyectos Git\n\n"]
-    lines.append(f"Actualizado: {now} America/Guatemala\n\n")
+    lines.append(f"Actualizado: {now} (hora local)\n\n")
     lines.append("Base de memoria local para trabajar con las raices configuradas en `.memoria-system/config/settings.json`.\n\n")
     lines.append("## Entrada rapida\n")
     lines.append("- [[Inicio Memoria]]\n")
@@ -997,7 +1001,7 @@ def render_operational_context(projects: list[dict]) -> str:
     lines.append("## Como usar en un chat nuevo\n")
     lines.append("- Pedir: `usa la memoria de proyectos` o `usa project-memory`.\n")
     lines.append("- El asistente debe leer primero [[Inicio Memoria]], luego [[README - Memoria]], [[Mapa de Proyectos]] y la nota del proyecto relacionado.\n")
-    lines.append("- Si el proyecto no es claro, buscar por familia: Contraloria, Core Signature, USAC Editorial, RENAP, TEC InfoApp, Store, Softplus, CRM o SaaS Alcore.\n")
+    lines.append("- Si el proyecto no es claro, buscar por familia en [[Mapa de Proyectos]].\n")
     lines.append("- Para dudas historicas, cruzar con [[Contexto de Chats]], pero confirmar siempre en archivos locales antes de cambiar comportamiento.\n\n")
     lines.append("## Reglas operativas confirmadas\n")
     lines.append("- Antes de editar un repo, ejecutar `git status --short`.\n")
@@ -1023,8 +1027,7 @@ def render_operational_context(projects: list[dict]) -> str:
     lines.append("- Refrescar con:\n\n")
     lines.append("```bash\nmemoria refresh\n```\n\n")
     lines.append("- Registrar aprendizaje:\n\n")
-    lines.append("```bash\nmemoria registrar core-strapi --tipo aprendizaje --titulo 'Flujo de permisos' --texto 'Resumen reutilizable...' --archivo src/App.tsx --validacion 'npm run build'\n```\n\n")
-    lines.append("- Hay una automatizacion semanal activa los lunes a las 8:00 para refrescar la memoria y reportar cambios.\n")
+    lines.append("```bash\nmemoria registrar mi-landing --tipo aprendizaje --titulo 'Hero aprobado' --texto 'Resumen reutilizable...' --archivo src/App.tsx --validacion 'npm run build'\n```\n\n")
     lines.append("- Si el grafo muestra nodos viejos, recargar el vault o cerrar y abrir Obsidian para limpiar cache visual.\n\n")
     lines.append("## Estado conocido del ultimo barrido\n")
     if dirty:
@@ -1116,7 +1119,7 @@ def render_health_report(projects: list[dict]) -> str:
     now = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
     findings = health_findings(projects)
     lines = ["# Reporte de Salud\n\n"]
-    lines.append(f"Actualizado: {now} America/Guatemala\n\n")
+    lines.append(f"Actualizado: {now} (hora local)\n\n")
     lines.append("## Resumen\n")
     lines.append(f"- Proyectos inventariados: {len(projects)}\n")
     lines.append(f"- Hallazgos: {len(findings)}\n")
@@ -1241,7 +1244,7 @@ def render_multimedia_index(assets: list[dict]) -> str:
 
     lines = ["# Multimedia\n\n"]
     lines.append("Biblioteca operativa de documentos, imagenes, logos, audios, videos y fuentes para proyectos, marcas y marketing.\n\n")
-    lines.append(f"Actualizado: {now} America/Guatemala\n\n")
+    lines.append(f"Actualizado: {now} (hora local)\n\n")
     lines.append("## Como guardar activos\n")
     lines.append("- Proyectos: `Multimedia/Biblioteca/Proyectos/<nombre-proyecto>/<tipo>/archivo.ext`\n")
     lines.append("- Marcas/clientes: `Multimedia/Biblioteca/Marcas/<nombre-marca>/<tipo>/archivo.ext`\n")
@@ -1305,7 +1308,7 @@ memoria refresh-grafo
 4. Buscar desde Graphify u Obsidian:
 
 ```bash
-graphify query "que logos tenemos para Campuslands"
+graphify query "que logos tenemos para mi marca"
 multimedia buscar logo
 ```
 
@@ -1472,7 +1475,7 @@ def render_skills_index(skills: list[dict]) -> str:
         by_category[skill["category"]].append(skill)
     lines = ["# Skills\n\n"]
     lines.append("Inventario operativo de skills instaladas por IA para decidir que capacidad usar en cada interaccion.\n\n")
-    lines.append(f"Actualizado: {now} America/Guatemala\n\n")
+    lines.append(f"Actualizado: {now} (hora local)\n\n")
     lines.append("## Paneles\n")
     lines.append("- [[Codex Skills]]\n")
     lines.append("- [[Claude Skills]]\n")
@@ -1782,12 +1785,6 @@ def render_chat_context(projects: list[dict]) -> str:
             for name in names:
                 if name.lower() in low or name.lower().replace("-", " ") in low:
                     hits.add(name)
-            if any(word in low for word in ("strapi", "cms", "shop", "purchase", "gps", "scanner", "tenant", "permiso", "landing", "bodega", "sucursal", "orden", "mail", "page builder")):
-                if "core-strapi" in names:
-                    hits.add("core-strapi")
-            if any(word in low for word in ("contraloria", "menú", "menu")):
-                if "contraloria-frontend" in names:
-                    hits.add("contraloria-frontend")
             if hits:
                 rows.append((item.get("updated_at", "")[:10], title, sorted(hits)))
     seen = set()
@@ -1829,11 +1826,8 @@ def archived_chat_snippets(projects: list[dict]) -> list[tuple[str, str, str, st
     for name in names:
         base = name.lower()
         aliases[name] = sorted({base, base.replace("-", " ")})
-    thematic = {
-        "core-strapi": ["strapi", "cms", "shop", "purchase", "gps", "scanner", "tenant", "bodega", "sucursal", "page builder"],
-        "contraloria-frontend": ["contraloria", "menú", "menu", "mega menu", "niveles"],
-        "softplus": ["softplus"],
-    }
+    # Pistas tematicas opcionales: {"proyecto": ["palabra", ...]} en settings.json.
+    thematic = SETTINGS.get("chat_thematic_hints") or {}
 
     rows: list[tuple[str, str, str, str]] = []
     seen: set[tuple[str, str, str]] = set()
@@ -1887,7 +1881,7 @@ def archived_chat_snippets(projects: list[dict]) -> list[tuple[str, str, str, st
                 if not hit_projects:
                     continue
                 cleaned = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
-                cleaned = re.sub(r"/Users/macbookpro/\.codex/\S+", "[ruta local]", cleaned)
+                cleaned = re.sub(r"(?:/Users|/home)/[^/\s]+/\S+", "[ruta local]", cleaned)
                 cleaned = cleaned.replace("Codex", "asistente").replace("codex", "asistente")
                 cleaned = cleaned.replace("SKILL.md", "archivo de skill").replace("openai.yaml", "metadata")
                 cleaned = re.sub(r"\s+", " ", cleaned)
@@ -1977,7 +1971,7 @@ def main() -> None:
     write(SEGMENTED_PROJECTS_ROOT / "Indice de Proyectos Segmentados.md", "".join(segmented_index))
     index = {
         "updated_at": dt.datetime.now().isoformat(timespec="seconds"),
-        "projects_roots": ["$PROJECTS_ROOT", "$PROJECTS_ROOT_PLAYGROUND"],
+        "projects_roots": ["$PROJECTS_ROOT" if i == 0 else f"$PROJECTS_ROOT_{root.name.upper()}" for i, root in enumerate(PROJECTS_ROOTS)],
         "vault_root": "$VAULT_ROOT/Memoria",
         "projects": projects,
         "multimedia_assets": assets,

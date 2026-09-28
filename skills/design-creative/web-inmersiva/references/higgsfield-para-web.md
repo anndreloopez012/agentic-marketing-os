@@ -30,7 +30,7 @@ Reutiliza ese `media_id` en todas las generaciones.
   `generate_audio: false`, `aspect_ratio` igual al de la imagen. El `start_image` puede ser el
   id de un trabajo de imagen anterior.
 - Seedance 2.5 a 1:1 1080p entrega **1440×1440, HEVC 10 bits, 24 fps**; a 720p, 960×960 H.264.
-  Una imagen base 16:9 puede reencuadrarse sola (la portada de Kivo quedó centrada).
+  Una imagen base 16:9 puede reencuadrarse sola (la portada del caso de referencia quedó centrada).
 - **Recorte de fondo**: `remove_background` con `media_type: video` y el id del trabajo.
   Devuelve **H.264 sin alfa, con el sujeto sobre negro puro**. Conserva el original: el alfa se
   reconstruye comparando ambos (`scripts/componer_alfa.py`).

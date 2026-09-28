@@ -1,0 +1,6 @@
+interface:
+  display_name: "Slideshow"
+  short_description: "Author a HyperFrames slideshow — a presentation, pitch deck…"
+  default_prompt: "Usa $slideshow para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

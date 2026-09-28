@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bolder"
+  short_description: "Amplify safe or boring designs to make them more visually…"
+  default_prompt: "Usa $bolder para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -20,13 +20,13 @@ Un pilar es un tema central que define de qué hablas. Cada marca necesita 3-5 p
 2. ¿Qué le importa a tu audiencia objetivo? → Relevancia
 3. ¿Qué conecta tu expertise con sus intereses? → Pilares
 
-**Ejemplo para agencia de software (Alcore/Campuslands):**
+**Ejemplo para una agencia de software:**
 ```
 Pilar 1: Tecnología y desarrollo  → tutoriales, tendencias, código
 Pilar 2: Negocios y productividad → casos de éxito, procesos, ROI
 Pilar 3: Educación y carrera       → tips para devs, aprendizaje
 Pilar 4: Cultura y equipo          → behind the scenes, valores
-Pilar 5: Industria local (GT)      → ecosistema tech guatemalteco
+Pilar 5: Industria local           → ecosistema tech de tu país
 ```
 
 ---

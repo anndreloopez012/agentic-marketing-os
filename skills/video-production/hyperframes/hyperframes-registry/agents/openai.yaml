@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hyperframes Registry"
+  short_description: "Search, install, and wire registry blocks and components into…"
+  default_prompt: "Usa $hyperframes-registry para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 ---
-name: remotion-best-practices
-description: Best practices for Remotion - Video creation in React
+name: remotion
+description: Best practices for Remotion, programmatic video creation in React. Use whenever the user works with Remotion code or asks to create, animate, caption, add audio to, preview or render a video with React (compositions, sequences, transitions, subtitles, charts, 3D, audio visualization, silence detection).
 metadata:
   tags: remotion, video, react, animation, composition
 ---

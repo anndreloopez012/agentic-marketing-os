@@ -43,3 +43,16 @@ graphify-out/
 .env
 .env.local
 config/settings.local.json
+
+# Generated per machine by scripts/install.sh (contains local paths)
+engine/memory/config/settings.json
+engine/memory/data/
+engine/memory/graph/
+engine/memory/logs/
+engine/memory/project-graphs/
+
+# Local tool environments and packaged skills
+.venv-tools/
+.tools/
+dist/
+.privacy-denylist

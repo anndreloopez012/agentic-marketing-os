@@ -1,0 +1,6 @@
+interface:
+  display_name: "Media Use"
+  short_description: "Agent Media OS, the single skill for every media need in a…"
+  default_prompt: "Usa $media-use para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

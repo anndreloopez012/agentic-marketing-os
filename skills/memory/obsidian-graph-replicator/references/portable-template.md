@@ -1,6 +1,6 @@
 # Portable Template
 
-Use this reference when the user wants the graph design to work in another site without depending on `marketing-digital-ia`, a build system, a backend, or external packages.
+Use this reference when the user wants the graph design to work in another site without depending on the original reference app, a build system, a backend, or external packages.
 
 ## Included Files
 
@@ -29,7 +29,7 @@ It uses only browser APIs:
 Copy the template with the bundled script:
 
 ```bash
-python3 /Users/macbookpro/.codex/skills/obsidian-graph-replicator/scripts/install_nebula_graph.py /path/to/target-web-root
+python3 <skill-dir>/scripts/install_nebula_graph.py /path/to/target-web-root
 ```
 
 This creates:

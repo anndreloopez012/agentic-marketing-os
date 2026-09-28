@@ -1,6 +1,6 @@
 # Frontend Graphify Nebula Graph
 
-Use this when implementing the nebula graph visual in another web app. For dependency-free replication, use `assets/nebula-graph-template` first; it is standalone HTML/CSS/JS and renders with embedded demo data. The code in `marketing-digital-ia/static/unified.js` and `static/style.css` is a parity reference when exact production behavior is needed. The screenshot is the visual acceptance target.
+Use this when implementing the nebula graph visual in another web app. For dependency-free replication, use `assets/nebula-graph-template` first; it is standalone HTML/CSS/JS and renders with embedded demo data. The screenshot is the visual acceptance target.
 
 ## Dependency-Free Implementation
 
@@ -24,7 +24,7 @@ Capabilities:
 
 ## Source Parity Map
 
-Use these existing source files only when deeper parity with `marketing-digital-ia` is needed:
+Use these existing source files only when deeper parity with the original reference app (not included) is needed:
 
 - `static/unified.js`
   - `Unified` module: renderer lifecycle and public API.

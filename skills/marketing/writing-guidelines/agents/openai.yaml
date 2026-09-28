@@ -1,0 +1,6 @@
+interface:
+  display_name: "Writing Guidelines"
+  short_description: "Review docs/prose for Writing Guidelines compliance."
+  default_prompt: "Usa $writing-guidelines para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

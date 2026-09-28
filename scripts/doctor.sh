@@ -47,12 +47,14 @@ check_cmd() {
 
 check_cmd "git" "true" "Instala git desde xcode-select --install o tu gestor de paquetes."
 check_cmd "python3" "true" "Instala Python 3.10+ (brew install python3)."
-check_cmd "node" "true" "Instala Node.js 18+ o 20+ (brew install node o nvm)."
+check_cmd "node" "false" "Necesario para video y agent-browser: instala Node.js 20+ (brew install node o nvm)."
 check_cmd "ffmpeg" "false" "Requerido para Remotion y HyperFrames (brew install ffmpeg)."
-check_cmd "graphify" "true" "Instala con: pipx install graphifyy o uv tool install graphifyy."
-check_cmd "agent-browser" "true" "Instala con: npm install -g agent-browser."
+check_cmd "memoria" "false" "Ejecuta ./scripts/install.sh para enlazar el CLI de memoria."
+check_cmd "graphify" "false" "Instala con: pipx install graphifyy o uv tool install graphifyy."
+check_cmd "agent-browser" "false" "Instala con: npm install -g agent-browser."
 check_cmd "hyperframes" "false" "Instala con: npm install -g hyperframes."
-check_cmd "memoria" "true" "Ejecuta ./scripts/install.sh para enlazar el CLI de memoria."
+check_cmd "elevenlabs" "false" "Ejecuta ./scripts/install.sh (instala el CLI de ElevenLabs)."
+check_cmd "flow-veo" "false" "Ejecuta ./scripts/install.sh (instala el director de Veo/Flow)."
 
 # 2. Comprobación de Configuración de Obsidian y Espacio de Trabajo
 echo -e "\n${BOLD}2. Memoria Continua y Obsidian Vault:${NC}"
@@ -85,7 +87,7 @@ count_skills() {
     local label="$2"
     if [ -d "$dir" ]; then
         local count
-        count=$(find "$dir" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
+        count=$(find -L "$dir" -mindepth 2 -maxdepth 2 -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
         echo -e "  [${GREEN}OK${NC}] $label: ${CYAN}$count${NC} habilidades detectadas en $dir"
     else
         echo -e "  [${YELLOW}INFO${NC}] $label: directorio no configurado ($dir)"
@@ -93,8 +95,16 @@ count_skills() {
 }
 
 count_skills "$HOME/.claude/skills" "Claude Code"
-count_skills "$HOME/.codex/skills" "OpenAI Codex"
+count_skills "$HOME/.agents/skills" "OpenAI Codex / ChatGPT"
 count_skills "$HOME/.gemini/config/skills" "Google Antigravity"
+
+# Catálogo del repositorio
+if python3 "$REPO_ROOT/scripts/skills_tool.py" validate >/dev/null 2>&1; then
+    echo -e "  [${GREEN}OK${NC}] Catálogo de skills válido ($(python3 "$REPO_ROOT/scripts/skills_tool.py" list --paths | wc -l | tr -d ' ') skills)"
+else
+    echo -e "  [${RED}FAIL${NC}] El catálogo tiene errores: python3 scripts/skills_tool.py validate"
+    ERRORS=$((ERRORS + 1))
+fi
 
 # 4. Comprobación de Credenciales de API (Opcionales para IA Externa)
 echo -e "\n${BOLD}4. Variables de Entorno y Claves de API:${NC}"

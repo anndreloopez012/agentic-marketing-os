@@ -96,7 +96,7 @@ export default function ProductoPage({ producto }) {
 | **Transaccional** | Comprar ahora | "comprar software CRM Guatemala" | Alta — convierte |
 | **Comercial** | Comparar opciones | "mejor CRM para pymes Guatemala" | Alta — near-convert |
 | **Informacional** | Aprender | "qué es un CRM" | Media — tráfico |
-| **Navegacional** | Buscar marca | "Alcore CRM" | Baja — ya te conocen |
+| **Navegacional** | Buscar marca | "NombreDeTuMarca CRM" | Baja — ya te conocen |
 
 ### Proceso de investigación
 1. **Seed keywords**: 5-10 términos base del negocio.

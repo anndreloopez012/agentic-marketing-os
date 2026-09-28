@@ -1,0 +1,6 @@
+interface:
+  display_name: "Slack"
+  short_description: "Interact with Slack workspaces using browser automation."
+  default_prompt: "Usa $slack para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

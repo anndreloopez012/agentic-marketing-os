@@ -1,0 +1,6 @@
+interface:
+  display_name: "Proposal Writer"
+  short_description: "Escribe propuestas comerciales y cotizaciones ganadoras …"
+  default_prompt: "Usa $proposal-writer para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

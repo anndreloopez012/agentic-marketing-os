@@ -1,0 +1,6 @@
+interface:
+  display_name: "Elevenlabs"
+  short_description: "Use ElevenLabs for high-quality text-to-speech (TTS), audio…"
+  default_prompt: "Usa $elevenlabs para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

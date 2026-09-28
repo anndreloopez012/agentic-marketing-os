@@ -1,0 +1,6 @@
+interface:
+  display_name: "Animate"
+  short_description: "Review a feature and enhance it with purposeful animations…"
+  default_prompt: "Usa $animate para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

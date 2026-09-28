@@ -1,0 +1,6 @@
+interface:
+  display_name: "Figma"
+  short_description: "Import Figma content into a HyperFrames composition — rendered…"
+  default_prompt: "Usa $figma para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

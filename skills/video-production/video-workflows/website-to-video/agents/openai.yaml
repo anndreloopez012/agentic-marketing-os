@@ -1,0 +1,6 @@
+interface:
+  display_name: "Website To Video"
+  short_description: "Capture a general website/URL and turn it into a video OF the…"
+  default_prompt: "Usa $website-to-video para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

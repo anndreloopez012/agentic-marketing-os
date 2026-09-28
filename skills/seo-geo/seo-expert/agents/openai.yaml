@@ -1,0 +1,6 @@
+interface:
+  display_name: "SEO Expert"
+  short_description: "SEO técnico, on-page, local y de contenido — auditorías…"
+  default_prompt: "Usa $seo-expert para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

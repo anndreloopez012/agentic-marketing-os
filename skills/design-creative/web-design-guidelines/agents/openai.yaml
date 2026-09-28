@@ -1,0 +1,6 @@
+interface:
+  display_name: "Web Design Guidelines"
+  short_description: "Review UI code for Web Interface Guidelines compliance."
+  default_prompt: "Usa $web-design-guidelines para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

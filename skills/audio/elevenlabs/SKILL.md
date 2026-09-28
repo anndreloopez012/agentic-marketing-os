@@ -18,8 +18,8 @@ This skill provides comprehensive instructions, best practices, CLI commands, an
 Tanto en la terminal con la CLI (`elevenlabs` o `el`) como al conversar con los agentes (Antigravity, Codex o Claude Code), puedes pedir cualquier acción directamente en lenguaje natural:
 
 ```bash
-# Hablar / Reproducir en vivo en tu Mac:
-el "di hola bienvenidos a Campuslands con voz de Sarah"
+# Hablar / reproducir en vivo en tus parlantes:
+el "di hola bienvenidos a mi tienda con voz de Sarah"
 el "reproduce con voz de Roger: la reunión es a las 3"
 
 # Generar efectos de sonido:
@@ -42,7 +42,18 @@ el "transcribe la llamada reunion.m4a"
 
 ## 2. Quick CLI Access (`elevenlabs` / `el`)
 
-# List available voices (search by name, accent, gender)
+El CLI viene incluido en esta skill: `scripts/elevenlabs_cli.py`. El instalador de Agentic Marketing OS lo deja disponible como `elevenlabs` y `el`. Sin instalador:
+
+```bash
+python3 -m pip install --user elevenlabs   # o dentro de un entorno virtual
+export ELEVENLABS_API_KEY=...              # o guárdala en ~/.config/elevenlabs/.env
+python3 <skill-dir>/scripts/elevenlabs_cli.py status
+```
+
+En ChatGPT o claude.ai (sin terminal) usa la API o la web de ElevenLabs con los mismos parámetros de voz y modelo descritos abajo.
+
+```bash
+# List available voices (search by name, accent, gender) (search by name, accent, gender)
 elevenlabs voices -s "spanish"
 elevenlabs voices -s "Roger"
 
@@ -52,7 +63,7 @@ elevenlabs tts "Hola, bienvenidos a este nuevo episodio." -o salida.mp3 -v "Roge
 # TTS with timestamps (creates salida.mp3 and salida.timestamps.json for subtitles)
 elevenlabs tts "Texto sincronizado" -o video_sub.mp3 --timestamps
 
-# Instant playback through Mac speakers (great for testing)
+# Instant playback through your speakers (great for testing)
 elevenlabs speak "Audio de prueba reproducido en vivo."
 
 # Sound Effects (SFX)
@@ -73,7 +84,7 @@ elevenlabs music "ambient chillhop lofi beat for coding" -o background.mp3
 
 ---
 
-## 2. Models Guide: Choosing the Right Model
+## 3. Models Guide: Choosing the Right Model
 
 | Model ID | Primary Use Case | Latency | Quality / Emotion | Languages |
 | :--- | :--- | :--- | :--- | :--- |
@@ -85,7 +96,7 @@ elevenlabs music "ambient chillhop lofi beat for coding" -o background.mp3
 
 ---
 
-## 3. Voice Settings Tuning (Ajuste Fino de Parámetros)
+## 4. Voice Settings Tuning (Ajuste Fino de Parámetros)
 
 Para sacarle el máximo provecho a la voz según el objetivo:
 
@@ -104,7 +115,7 @@ Para sacarle el máximo provecho a la voz según el objetivo:
 
 ---
 
-## 4. MCP Server Tools (Model Context Protocol)
+## 5. MCP Server Tools (Model Context Protocol)
 
 El servidor MCP `@mindstone/mcp-server-elevenlabs` está instalado y configurado en:
 - Antigravity: `~/.gemini/config/mcp_config.json`
@@ -127,7 +138,7 @@ Herramientas disponibles directamente para los agentes:
 
 ---
 
-## 5. Python Code Patterns
+## 6. Python Code Patterns
 
 ```python
 from elevenlabs.client import ElevenLabs
@@ -167,7 +178,7 @@ with open("audio.mp3", "rb") as f:
 
 ---
 
-## 6. Integración con Video (HyperFrames / Remotion)
+## 7. Integración con Video (HyperFrames / Remotion)
 
 Cuando generes videos con `hyperframes` o `remotion`:
 1. Genera la locución con `elevenlabs tts "..." --timestamps -o audio.mp3`.

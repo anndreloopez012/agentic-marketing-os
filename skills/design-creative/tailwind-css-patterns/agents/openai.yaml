@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tailwind CSS Patterns"
+  short_description: "Provides comprehensive Tailwind CSS utility-first styling…"
+  default_prompt: "Usa $tailwind-css-patterns para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

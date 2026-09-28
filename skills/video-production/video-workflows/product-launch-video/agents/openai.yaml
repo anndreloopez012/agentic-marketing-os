@@ -1,0 +1,6 @@
+interface:
+  display_name: "Product Launch Video"
+  short_description: "Turn a product or marketing URL, pasted script, or brief into…"
+  default_prompt: "Usa $product-launch-video para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

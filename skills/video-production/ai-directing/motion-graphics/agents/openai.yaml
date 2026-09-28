@@ -1,0 +1,6 @@
+interface:
+  display_name: "Motion Graphics"
+  short_description: "A short, design-led motion graphic where motion is the message…"
+  default_prompt: "Usa $motion-graphics para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

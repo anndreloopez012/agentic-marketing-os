@@ -1,0 +1,6 @@
+interface:
+  display_name: "Web Inmersiva"
+  short_description: "Build immersive, eye-catching web pages around an animated…"
+  default_prompt: "Usa $web-inmersiva para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

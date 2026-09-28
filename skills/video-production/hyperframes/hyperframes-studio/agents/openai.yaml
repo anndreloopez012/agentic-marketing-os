@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hyperframes Studio"
+  short_description: "Building or editing a HyperFrames project that people open in…"
+  default_prompt: "Usa $hyperframes-studio para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Design System Builder"
+  short_description: "Construye y documenta design systems — tokens, componentes…"
+  default_prompt: "Usa $design-system-builder para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

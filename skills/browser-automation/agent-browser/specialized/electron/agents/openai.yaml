@@ -1,0 +1,6 @@
+interface:
+  display_name: "Electron"
+  short_description: "Automate Electron desktop apps (VS Code, Slack, Discord…"
+  default_prompt: "Usa $electron para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true
