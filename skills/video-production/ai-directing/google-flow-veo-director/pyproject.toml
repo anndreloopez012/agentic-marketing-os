@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flow-veo-director"
+version = "1.1.0"
+authors = [
+  { name="Agentic Marketing OS" },
+]
+description = "Director cinematográfico autónomo y generador de prompts para Google Flow y Veo con control de continuidad en videos largos."
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Video",
+]
+
+[project.scripts]
+flow-veo = "flow_veo_director.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["flow_veo_director*"]
