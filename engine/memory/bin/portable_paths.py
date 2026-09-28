@@ -49,7 +49,7 @@ INSTALL_ROOT = SYSTEM_ROOT / "install"
 PROJECT_GRAPHS_ROOT = SYSTEM_ROOT / "project-graphs"
 PROJECTS_ROOTS = [
     _expand(item)
-    for item in SETTINGS.get("projects_roots", ["~/Documents/PROYECTOS"])
+    for item in SETTINGS.get("projects_roots", ["~/Documents/MarketingProjects"])
 ]
 PROJECTS_ROOT = next((path for path in PROJECTS_ROOTS if path.exists()), PROJECTS_ROOTS[0])
 CODEX_ROOT = _expand(SETTINGS.get("codex_root", "~/.codex"))

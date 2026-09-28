@@ -18,8 +18,8 @@
     const nodes = [];
     const links = [];
     const anchors = [
-      "Indice de Skills Codex", "SISTEMA FIRMAS", "VISUAL-MED-IA", "saas-alcore-frontend",
-      "marketing-digital-ia", "Campuslands", "Runbooks", "Graphify", "Core Strapi"
+      "Indice de Skills", "Campana Lanzamiento", "Calendario Instagram", "tienda-online",
+      "landing-page", "Mi Marca", "Runbooks", "Graphify", "Brand Book"
     ];
 
     for (let i = 0; i < count; i += 1) {

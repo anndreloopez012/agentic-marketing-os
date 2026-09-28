@@ -1,0 +1,6 @@
+interface:
+  display_name: "Distill"
+  short_description: "Strip designs to their essence by removing unnecessary…"
+  default_prompt: "Usa $distill para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

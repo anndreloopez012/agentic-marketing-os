@@ -1,0 +1,6 @@
+interface:
+  display_name: "Web Scraping Pro"
+  short_description: "Extracción avanzada de datos web, scraping de catálogos…"
+  default_prompt: "Usa $web-scraping-pro para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

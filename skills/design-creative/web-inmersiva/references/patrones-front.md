@@ -1,8 +1,7 @@
 # Patrones de front
 
-Los ejemplos son React + framer-motion (así se hizo Kivo), pero la lógica es la misma en
-vanilla o Astro + GSAP (así se hizo Nimbo+). Código completo de referencia en
-`core-strapi/src/components/brand/kivo/KivoInteractivo.tsx` y `src/pages/KivoPage.tsx`.
+Los ejemplos son React + framer-motion (así se hizo la landing SaaS del caso de referencia),
+pero la lógica es la misma en vanilla o Astro + GSAP (así se hizo la web con hyperlapse).
 
 ## Contenido
 1. Cargar secuencias
@@ -70,7 +69,7 @@ pintar(mirada, centro + giro * centro);      // índice fraccional
 
 - `pointermove` en `window` (pasivo) solo guarda coordenadas; se ignora `pointerType === 'touch'`.
 - `scroll` y `resize` solo marcan `rectSucio`. Medir en cada `pointermove` mientras se escriben
-  estilos provoca layout forzado; medir en cada cuadro fue el cuello de botella de Nimbo+.
+  estilos provoca layout forzado; medir en cada cuadro fue el cuello de botella de la web con hyperlapse.
 - **Reacción al clic**: modo `volviendo` (la cabeza regresa rápido al centro, k con 14) →
   `reaccion` (reproducir por tiempo, p. ej. 12 fps) → `mirada`. Funciona sin saltos porque
   todos los clips parten y terminan en el fotograma central.

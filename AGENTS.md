@@ -1,89 +1,49 @@
-# Protocolo Multi-Agente: Agentic Marketing OS (Codex, Antigravity y Claude Code)
+# Agentic Marketing OS — Reglas para agentes de IA
 
-Este repositorio y entorno de desarrollo opera bajo un protocolo de colaboración multi-agente donde **OpenAI Codex**, **Google Antigravity** y **Anthropic Claude Code** comparten la misma base de conocimiento, herramientas y memoria continua sincronizada con **Obsidian** y **Graphify**.
+Estas reglas aplican a **Claude Code**, **Codex / ChatGPT** y **Gemini / Antigravity** cuando trabajan en los proyectos de marketing del alumno. Todos comparten las mismas skills, la misma carpeta de marca y la misma memoria.
 
----
+## 1. Antes de empezar
 
-## 1. Regla Mandatoria de Inicio: Consumir Memoria Antes de Asumir o Modificar
-Siempre que el usuario solicite crear una campaña, diseñar una interfaz, optimizar SEO/GEO, producir un video o modificar código:
+1. **Contexto de marca.** Busca `./marca/brand-profile.md` (y `./marca/style-bible.md`). Si no existe y la tarea produce contenido, créalo con la plantilla de la skill `instagram-content-suite`, entrevistando al usuario con máximo 8 preguntas.
+2. **Memoria (si está instalada).** Si existe el comando `memoria`, consulta `memoria contexto <proyecto>`; si hay notas en el vault de Obsidian (`Memoria/`), lee `Inicio Memoria.md` y la nota del proyecto.
+3. **Grafo (opcional).** Si el proyecto tiene `graphify-out/graph.json`, pregunta al grafo antes de leer muchos archivos: `graphify query "<pregunta>"`.
+4. **Git.** Ejecuta `git status --short` antes de modificar archivos y respeta los cambios del usuario.
 
-1. **Consultar la Memoria del Proyecto**:
-   - Usar la CLI local:
-     ```bash
-     memoria contexto <nombre-proyecto>
-     memoria proyecto <nombre-proyecto>
-     ```
-   - O consultar las notas en el Obsidian Vault:
-     - `Memoria/Inicio Memoria.md`
-     - `Memoria/Contexto Operativo.md`
-     - `Memoria/Proyectos Git/<nombre-proyecto>.md`
+## 2. Qué skill usar
 
-2. **Consultar Graphify para Arquitectura y Flujos**:
-   - Si el proyecto cuenta con `graphify-out/graph.json`:
-     ```bash
-     graphify query "<pregunta sobre arquitectura, dependencias o flujos>"
-     graphify path "<ComponenteA>" "<ComponenteB>"
-     graphify explain "<ModuloOConcepto>"
-     ```
+| Necesidad | Skills |
+|---|---|
+| Estrategia, diagnóstico de marca, buyer persona, entregables del curso | `marketing-ia-expert`, `business-analysis`, `brand-identity` |
+| Copy que vende (landing, anuncios, emails, ganchos) | `copywriting-pro`, `email-marketing`, `writing-guidelines` |
+| Contenido y redes | `content-strategy`, `social-media-strategy`, `instagram-content-suite`, `social-media-design` |
+| Pauta pagada | `paid-ads` |
+| Clientes, propuestas y proyectos | `client-management`, `proposal-writer`, `project-management` |
+| Investigación de competencia | `social-competitor-intelligence`, `web-scraping-pro`, `agent-browser` |
+| SEO y aparecer en respuestas de IA | `seo-expert`, `seo`, `geo-expert` |
+| Landing pages y diseño web | `shape`, `frontend-design`, `impeccable`, `ui-ux-pro-max`, `web-inmersiva`, pulidores (`polish`, `typeset`, `layout`, `colorize`, `bolder`, `quieter`, `delight`, `animate`, `adapt`, `clarify`, `distill`), calidad (`audit`, `accessibility`, `harden`, `optimize`, `critique`) |
+| Imágenes con IA | `imagegen`, `higgsfield` |
+| Video con IA (Veo, Flow, Kling, Higgsfield) | `google-flow-veo-director`, `video-prompt-engineering`, `video-continuity`, `social-video-producer` |
+| Video programático | `hyperframes` (punto de entrada), `remotion`, `product-launch-video`, `faceless-explainer`, `website-to-video`, `embedded-captions`, `motion-graphics` |
+| Voz, música y efectos | `elevenlabs` |
+| Memoria del proyecto | `project-memory`, `graphify` |
 
-3. **Inspección Previa de Git**:
-   - Ejecutar `git status --short` antes de modificar o crear archivos. Respetar cambios locales sin confirmar del usuario.
+Lee el `SKILL.md` real de la skill antes de actuar; no la recites de memoria.
 
----
+## 3. Reglas de calidad
 
-## 2. Catálogo de Habilidades y Directivas por Dominio
+- **Nada inventado.** No inventes cifras, testimonios, clientes, premios ni precios. Marca supuestos como `[POR CONFIRMAR]` o `[EJEMPLO]`.
+- **Entregables listos para usar.** Tablas, calendarios, guiones, copies, prompts y archivos; no consejos vagos.
+- **Voz de la marca.** Respeta tono, paleta, tipografías y política de emojis del perfil de marca.
+- **Secretos fuera.** Nunca escribas API keys ni datos personales de clientes en notas, commits o archivos del proyecto. Las claves viven en `.env`.
+- **Entregables separados de la memoria.** El código y los archivos van en la carpeta de proyectos; el vault de Obsidian guarda solo notas.
 
-### A. Marketing Estratégico y Copywriting
-- **Copywriting**: Utilizar la habilidad `copywriting-pro` con fórmulas probadas (AIDA, PAS, BAB, StoryBrand). Todo copy debe enfocarse en conversión, claridad y dolor del cliente.
-- **Estrategia y Calendarios**: Usar `content-strategy` y `social-media-strategy` para planificar pilares, clusters de contenido y tácticas multicanal.
-- **Pauta Publicitaria**: Usar `paid-ads` para estructurar campañas de Meta Ads, Google Ads y TikTok Ads, calculando ROAS y ángulos de prueba.
-- **Identidad de Marca**: Usar `brand-identity` para guías de estilo, tono de voz, propuestas de valor y manuales de marca.
+## 4. Al terminar
 
-### B. SEO y GEO (Generative Engine Optimization)
-- **SEO Clásico y Técnico**: Usar `seo-expert` y `seo` para Core Web Vitals, metadatos, sitemaps XML y checklists técnicos.
-- **GEO / AEO (Optimización para IA)**: Usar `geo-expert` para estructurar contenido en formato "quote-ready" para ChatGPT Search, Perplexity AI y Google AI Overviews.
-- Implementar siempre esquemas JSON-LD ricos (`Organization`, `FAQPage`, `LocalBusiness`, `sameAs`).
+1. Si se confirmó una decisión (tono, oferta, audiencia, diseño), actualiza `./marca/brand-profile.md`.
+2. Si la memoria está instalada: `memoria registrar <proyecto> --tipo decision|aprendizaje|cambio|validacion --titulo "..." --texto "..."`.
+3. Si el proyecto usa Graphify: `graphify update .`.
+4. En proyectos con Git: trabaja en ramas `feature/...`, integra en `dev` y luego en `main`.
 
-### C. Diseño Frontend, UI/UX y Arte Visual
-- **Diseño de Interfaces**: Usar `frontend-design`, `impeccable` y `ui-ux-pro-max` para interfaces modernas con jerarquía visual impecable, evitando estéticas genéricas de IA.
-- **Micro-habilidades de Pulido**: Aplicar `polish`, `typeset`, `layout`, `delight`, `animate`, `colorize`, `bolder` o `quieter` según la dirección artística deseada.
-- **Generación de Imágenes**: Usar `imagegen` con descriptores de iluminación, lente, composición y estilo.
+## 5. Sin terminal (ChatGPT web, claude.ai)
 
-### D. Producción y Edición de Video (Remotion & HyperFrames)
-- **Remotion**: Cuando se trabaje con video programático en React, consultar `remotion` y sus reglas en `rules/` (timing, audio visualization, subtitles, silence detection, 3D).
-- **HyperFrames**: Para composiciones ultrarrápidas y deterministas en HTML/CSS, utilizar `hyperframes-core` y workflows especializados (`product-launch-video`, `faceless-explainer`, `talking-head-recut`, `general-video`).
-- **Dirección Cinematográfica de IA**: Utilizar `google-flow-veo-director`, `video-prompt-engineering` y `video-continuity` para secuencias consistentes.
-- **Audio y Voz**: Utilizar `elevenlabs` para locuciones profesionales, efectos de sonido y limpieza de audio.
-
-### E. Inspección y Automatización Web
-- **Agent-Browser**: Usar `agent-browser` para navegar sitios web en vivo, extraer datos del DOM, capturar pantallas, auditar accesibilidad con axe-core y verificar formularios.
-
-### F. Scraping Web e Inteligencia Competitiva en Redes
-- **Web Scraping**: Usar `web-scraping-pro` para extraer catálogos, monitorear precios, rastrear sitemaps XML y convertir páginas a Markdown limpio sin ruido.
-- **Espionaje en Redes**: Usar `social-competitor-intelligence` para analizar la Biblioteca de Anuncios de Meta (anuncios ganadores por longevidad), TikTok Creative Center, miniaturas/títulos de YouTube y quejas de clientes rivales para crear matrices competitivas y contra-ofertas irresistibles.
-
----
-
-## 3. Regla Mandatoria de Sincronización y Cierre de Cambios
-Al concluir cualquier tarea, entrega o sprint en un proyecto:
-
-1. **Actualizar el Grafo de Conocimiento**:
-   ```bash
-   graphify update .
-   ```
-2. **Exportar hacia el Obsidian Vault**:
-   ```bash
-   graphify export obsidian --dir "$VAULT_ROOT/Memoria/Graphify/<nombre-proyecto>"
-   ```
-3. **Refrescar Índices de Memoria**:
-   ```bash
-   memoria refresh
-   ```
-4. **Registrar Decisiones o Aprendizajes**:
-   ```bash
-   memoria registrar <nombre-proyecto> --tipo [aprendizaje|decision|cambio|validacion] --titulo "<Título>" --texto "<Resumen técnico claro y conciso>"
-   ```
-5. **Estrategia de Ramas Git**:
-   - Crear ramas de funcionalidad (`feature/...`).
-   - Integrar en `dev`.
-   - Sincronizar y confirmar en `main`.
+Los comandos `memoria`, `graphify`, `flow-veo` y `elevenlabs` no existen ahí: entrega el resultado directamente en la conversación y, si hay que guardar algo, dale al usuario el texto listo para pegar en su nota o archivo.

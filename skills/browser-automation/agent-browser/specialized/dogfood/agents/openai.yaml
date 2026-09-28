@@ -1,0 +1,6 @@
+interface:
+  display_name: "Dogfood"
+  short_description: "Systematically explore and test a web application to find…"
+  default_prompt: "Usa $dogfood para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

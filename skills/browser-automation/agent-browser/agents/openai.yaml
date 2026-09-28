@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Browser"
+  short_description: "Fast browser automation CLI for AI agents."
+  default_prompt: "Usa $agent-browser para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

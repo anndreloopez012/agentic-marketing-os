@@ -267,7 +267,7 @@ def build_dashboard(
         "## Uso en terminal",
         "```bash",
         "graphify query \"Que proyectos conectan backend y frontend\" --graph \"$OBSIDIAN_VAULT/.memoria-system/graph/graph.json\"",
-        "graphify path \"Inicio Memoria\" \"softplus\" --graph \"$OBSIDIAN_VAULT/.memoria-system/graph/graph.json\"",
+        "graphify path \"Inicio Memoria\" \"Contexto Operativo\" --graph \"$OBSIDIAN_VAULT/.memoria-system/graph/graph.json\"",
         "graphify explain \"Contexto Operativo\" --graph \"$OBSIDIAN_VAULT/.memoria-system/graph/graph.json\"",
         "```",
     ])

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Remotion To Hyperframes"
+  short_description: "Port an existing Remotion (React) composition's source to…"
+  default_prompt: "Usa $remotion-to-hyperframes para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

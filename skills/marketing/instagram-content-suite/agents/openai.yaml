@@ -1,0 +1,6 @@
+interface:
+  display_name: "Instagram Content Suite"
+  short_description: "Carruseles, Reels con Veo/Flow y calendario de Instagram para tu marca"
+  default_prompt: "Usa $instagram-content-suite para crear el perfil de mi marca y planificar mi primer mes de Instagram."
+policy:
+  allow_implicit_invocation: true

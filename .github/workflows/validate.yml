@@ -1,0 +1,37 @@
+name: Validar skills
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Frontmatter, nombres y privacidad
+        run: python3 scripts/skills_tool.py validate -v
+      - name: Marketplace de Claude Code al día
+        run: |
+          python3 scripts/skills_tool.py marketplace
+          git diff --exit-code .claude-plugin/marketplace.json || (echo "Ejecuta: python3 scripts/skills_tool.py marketplace" && exit 1)
+      - name: Sintaxis de scripts
+        run: |
+          bash -n scripts/install.sh scripts/doctor.sh scripts/sync-vault.sh
+          python3 -m py_compile scripts/skills_tool.py
+      - name: Pruebas de flow-veo
+        run: python3 -m unittest discover -s skills/video-production/ai-directing/google-flow-veo-director/tests
+        working-directory: .
+        env:
+          PYTHONPATH: skills/video-production/ai-directing/google-flow-veo-director
+      - name: Linter de Instagram
+        run: python3 skills/marketing/instagram-content-suite/scripts/content_validator.py --test
+      - name: Instalación de prueba
+        run: |
+          export HOME="$RUNNER_TEMP/home"
+          bash scripts/install.sh --yes --no-tools
+          test "$(ls "$HOME/.claude/skills" | wc -l)" -gt 80
+          test "$(ls "$HOME/.agents/skills" | wc -l)" -gt 80

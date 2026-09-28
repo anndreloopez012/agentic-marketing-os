@@ -1,0 +1,6 @@
+interface:
+  display_name: "Video Continuity"
+  short_description: "Maintain character, style, and visual continuity across…"
+  default_prompt: "Usa $video-continuity para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Derive Client"
+  short_description: "Reverse-engineer a website's internal API by recording browser…"
+  default_prompt: "Usa $derive-client para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

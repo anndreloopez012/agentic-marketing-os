@@ -1,0 +1,6 @@
+interface:
+  display_name: "Email Marketing"
+  short_description: "Estrategia y producción de email marketing — secuencias…"
+  default_prompt: "Usa $email-marketing para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

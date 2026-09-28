@@ -1,0 +1,6 @@
+interface:
+  display_name: "Music To Video"
+  short_description: "Turn a music track (an audio file, a video to pull audio from…"
+  default_prompt: "Usa $music-to-video para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

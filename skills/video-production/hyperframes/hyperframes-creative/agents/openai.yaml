@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hyperframes Creative"
+  short_description: "Non-animation creative direction for HyperFrames videos."
+  default_prompt: "Usa $hyperframes-creative para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

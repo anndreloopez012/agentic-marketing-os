@@ -1,0 +1,6 @@
+interface:
+  display_name: "Accessibility"
+  short_description: "Audit and improve web accessibility following WCAG 2.2…"
+  default_prompt: "Usa $accessibility para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

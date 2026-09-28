@@ -1,0 +1,6 @@
+interface:
+  display_name: "Faceless Explainer"
+  short_description: "Turn arbitrary text — an article, notes, a topic, a brief …"
+  default_prompt: "Usa $faceless-explainer para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

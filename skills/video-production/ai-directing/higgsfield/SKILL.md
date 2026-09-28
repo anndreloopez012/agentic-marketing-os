@@ -12,8 +12,9 @@ Higgsfield es una plataforma de generación de video IA especializada en **chara
 ## Contexto obligatorio antes de generar
 
 1. Consulta la memoria de continuidad de video antes de cualquier generación:
-   - Lee `~/Documents/Playground/memoria_tools/image_generation_memory.json` — contiene el style bible activo.
-   - Si existe `/Users/macbookpro/Documents/Obsidian Vault/Memoria/Herramientas/Higgsfield - Panel.md`, ábrelo para contexto de campañas activas y personajes registrados.
+   - Lee `./marca/image_generation_memory.json` en el proyecto actual (créalo si no existe) — contiene el style bible activo.
+   - Si existe `./marca/style-bible.md` o `./marca/brand-profile.md`, léelos para respetar la identidad visual de la marca.
+   - Si el alumno usa la memoria de Obsidian, revisa `Memoria/Herramientas/Higgsfield - Panel.md` en su vault para campañas activas y personajes registrados.
 2. Si el usuario menciona "el mismo personaje", "continuar la campaña", "siguiente escena" o "mismo estilo", reutiliza los anchors del memory file sin reinventar.
 3. Después de cada sesión de generación, actualiza el memory file con los resultados.
 
@@ -84,7 +85,7 @@ Disponibles como parámetros en el prompt:
 
 ## Generar desde Claude con el conector MCP
 
-Probado el 2026-09-17 (campaña Kivo de KINVO, 529.5 créditos). El CLI puede decir
+Probado en una campaña real con mascota animada (~530 créditos). El CLI puede decir
 `Not authenticated`, pero las herramientas del conector funcionan.
 
 1. **Saldo y costo**: `balance`; `get_cost: true` en `generate_video` / `generate_image`
@@ -164,7 +165,7 @@ Antes de video, considera el pipeline completo:
 
 Después de cada sesión, actualiza estos archivos:
 
-**`memoria_tools/image_generation_memory.json`** — agrega:
+**`./marca/image_generation_memory.json`** — agrega:
 ```json
 {
   "video_sessions": [
@@ -189,7 +190,7 @@ Después de cada sesión, actualiza estos archivos:
 }
 ```
 
-**Obsidian:** actualiza `/Users/macbookpro/Documents/Obsidian Vault/Memoria/Herramientas/Higgsfield - Panel.md` con:
+**Obsidian:** actualiza `Memoria/Herramientas/Higgsfield - Panel.md` en tu vault de Obsidian (si usas la memoria) con:
 - Campaña activa, personajes registrados, seeds usados, resultados clave.
 - Créditos antes y después, y dónde quedaron los crudos con los ids de cada trabajo
   (por ejemplo `trabajos-higgsfield.tsv` junto a los archivos).

@@ -1,0 +1,13 @@
+[GOOGLE VEO PROMPT]
+Aspect Ratio: 9:16 | Duration: [5-8s] | FPS: 24
+Subject: [Sujeto o mascota con sus rasgos fijos de la style bible]
+Environment: [Escenario coherente con el pilar y la paleta de marca]
+Action: [UNA acción clara y continua]
+Camera: [Slow dolly-in | 30-degree orbit | crane down | handheld drift]
+Lighting & Atmosphere: [Key, fill y rim light usando los colores HEX de marca]
+Render Style: [Estilo visual del perfil: photoreal | 3D animated feature | flat 2D ...]
+Negative: no text artifacts, no extra limbs, no logo distortion, no flicker
+Image Reference (Start Frame): [ruta local a la imagen ancla]
+
+LOCUCIÓN ([idioma del perfil], [N] palabras):
+"[Texto para locución]"

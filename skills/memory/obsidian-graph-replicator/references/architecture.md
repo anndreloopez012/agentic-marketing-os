@@ -1,6 +1,6 @@
 # Architecture Pattern
 
-This skill replicates the `marketing-digital-ia` graph system as a portable pattern.
+This skill replicates a production graph system (an Obsidian + Graphify memory viewer) as a portable pattern.
 
 ## Layers
 

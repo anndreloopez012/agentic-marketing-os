@@ -1,0 +1,6 @@
+interface:
+  display_name: "Protected Vercel Deployments"
+  short_description: "Access and test Vercel deployments protected by Vercel…"
+  default_prompt: "Usa $protected-vercel-deployments para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

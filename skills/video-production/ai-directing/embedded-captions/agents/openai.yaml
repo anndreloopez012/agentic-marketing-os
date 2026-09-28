@@ -1,0 +1,6 @@
+interface:
+  display_name: "Embedded Captions"
+  short_description: "Add captions or subtitles to an existing single-subject…"
+  default_prompt: "Usa $embedded-captions para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

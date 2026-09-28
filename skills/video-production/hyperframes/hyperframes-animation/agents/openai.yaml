@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hyperframes Animation"
+  short_description: "All animation knowledge for HyperFrames — atomic motion rules…"
+  default_prompt: "Usa $hyperframes-animation para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

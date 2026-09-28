@@ -9,7 +9,10 @@ import os
 import subprocess
 import sys
 
-VAULT_DIR = "/Users/macbookpro/Documents/Obsidian Vault"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from portable_paths import VAULT_ROOT  # noqa: E402
+
+VAULT_DIR = str(VAULT_ROOT)
 LOG_FILE = os.path.join(VAULT_DIR, ".memoria-system", "logs", "git_backup.log")
 
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Typeset"
+  short_description: "Improves typography by fixing font choices, hierarchy, sizing…"
+  default_prompt: "Usa $typeset para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -5,11 +5,11 @@ description: Build immersive, eye-catching web pages around an animated brand ma
 
 # Web inmersiva con personajes y medios generados
 
-Receta probada en dos proyectos reales: la web de SoftPlus GT (Nimbo+, hyperlapse por scroll,
-Astro + GSAP) y Kivo de KINVO (React + Vite + framer-motion: mascota que sigue el cursor y una
-página que la explica pieza por pieza). Aquí está lo que funcionó, **por qué**, y las trampas
-que solo aparecieron al ejecutar. El caso completo está en
-[references/caso-kivo.md](references/caso-kivo.md).
+Receta probada en dos proyectos reales: una web corporativa con hyperlapse por scroll
+(Astro + GSAP) y una landing SaaS con su mascota (React + Vite + framer-motion: mascota que
+sigue el cursor y una página que la explica pieza por pieza). Aquí está lo que funcionó,
+**por qué**, y las trampas que solo aparecieron al ejecutar. El caso completo, anonimizado,
+está en [references/caso-de-referencia.md](references/caso-de-referencia.md).
 
 ## Principios
 
@@ -151,7 +151,7 @@ Lista completa y explicada en [references/trampas.md](references/trampas.md). La
 | [references/patrones-front.md](references/patrones-front.md) | Al escribir el componente, la sección fijada o la navegación |
 | [references/qa.md](references/qa.md) | Antes de dar algo por terminado |
 | [references/trampas.md](references/trampas.md) | Cuando algo "no hace nada" o se ve raro |
-| [references/caso-kivo.md](references/caso-kivo.md) | Para ver un resultado completo con archivos y números |
+| [references/caso-de-referencia.md](references/caso-de-referencia.md) | Para ver un resultado completo con archivos y números |
 
 Skills relacionadas: `higgsfield-generate` (catálogo de modelos), `higgsfield` (biblia de
 estilo y memoria de campañas), `frontend-design` e `impeccable` (dirección visual), y

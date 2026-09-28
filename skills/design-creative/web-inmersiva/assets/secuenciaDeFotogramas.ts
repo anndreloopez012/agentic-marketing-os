@@ -3,7 +3,7 @@
  *
  * Se usa en lugar de adelantar un <video> porque Safari/iOS no adelanta video
  * de forma fiable fotograma a fotograma, y porque los fotogramas WebP conservan
- * el canal alfa (Kivo va recortado sobre el fondo de la página).
+ * el canal alfa (la mascota va recortada sobre el fondo de la página).
  *
  * El orden de carga es por bisección: extremos, centro, cuartos... Así la
  * secuencia es usable desde las primeras peticiones (con saltos) y se va

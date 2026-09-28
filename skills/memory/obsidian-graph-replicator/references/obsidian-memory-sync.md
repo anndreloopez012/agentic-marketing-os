@@ -55,7 +55,7 @@ Options:
 - Manual route: `/api/memory/sync`.
 - Background refresh every N interactions.
 - Environment override: `GRAPHIFY_REFRESH=/path/to/refresh_script.py`.
-- Default script if available: `~/Documents/Playground/memoria_tools/refresh_graphify_memory.py`.
+- Default script if available: `memoria refresh` from Agentic Marketing OS.
 
 After code changes in the project itself, run:
 

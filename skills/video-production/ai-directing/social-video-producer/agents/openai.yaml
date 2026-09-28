@@ -1,0 +1,6 @@
+interface:
+  display_name: "Social Video Producer"
+  short_description: "Producción de video profesional para redes sociales desde…"
+  default_prompt: "Usa $social-video-producer para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

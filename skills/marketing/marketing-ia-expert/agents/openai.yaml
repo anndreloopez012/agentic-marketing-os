@@ -1,0 +1,7 @@
+interface:
+  display_name: "Marketing IA Expert"
+  short_description: "Estrategia, branding, funnels, campañas y contenido con IA"
+  brand_color: "#0F766E"
+  default_prompt: "Usa $marketing-ia-expert para crear un entregable de marketing para mi marca con estrategia, canal, CTA y estructura publicable."
+policy:
+  allow_implicit_invocation: true

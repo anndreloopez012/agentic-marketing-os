@@ -1,0 +1,6 @@
+interface:
+  display_name: "Polish"
+  short_description: "Performs a final quality pass fixing alignment, spacing…"
+  default_prompt: "Usa $polish para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -40,14 +40,14 @@ En redes móviles (TikTok, Reels, Shorts), la interfaz del sistema (iconos de me
 ## 2. Herramientas y Scripts Disponibles
 
 Todos los scripts se ubican en:
-`/Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/`
+`<skill-dir>/scripts/`
 
 ### 1. `cli.py` (Orquestador Central)
 Punto de entrada unificado para ejecutar cualquier tarea de video.
 
 ```bash
 # Animar 1 imagen individual garantizando 0% distorsión de texto:
-python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cli.py animate \
+python3 <skill-dir>/scripts/cli.py animate \
   --image "/ruta/a/promo.png" \
   --platform tiktok \
   --duration 6 \
@@ -56,7 +56,7 @@ python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cl
   --output "video_tiktok.mp4"
 
 # Interpolar transición fluida entre dos imágenes (inicio -> fin):
-python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cli.py interpolate \
+python3 <skill-dir>/scripts/cli.py interpolate \
   --first "/ruta/a/inicio.png" \
   --last "/ruta/a/final.png" \
   --platform instagram_reels \
@@ -64,14 +64,14 @@ python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cl
   --output "transicion.mp4"
 
 # Planificar un video completo desde varias imágenes (storyboard):
-python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cli.py plan \
+python3 <skill-dir>/scripts/cli.py plan \
   --images slide1.png slide2.png slide3.png \
   --platform reels \
   --topic "Lanzamiento Nueva Colección" \
   --output "storyboard.json"
 
 # Producir el video multi-escena final desde el storyboard:
-python3 /Users/macbookpro/.gemini/config/skills/social-video-producer/scripts/cli.py produce \
+python3 <skill-dir>/scripts/cli.py produce \
   --storyboard "storyboard.json" \
   --transition fade \
   --bgm "audio/musica_fondo.mp3" \

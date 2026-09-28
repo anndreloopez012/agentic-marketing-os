@@ -1,0 +1,6 @@
+interface:
+  display_name: "Pr To Video"
+  short_description: "Turn a GitHub pull request (a PR URL, owner/repo#N, or 'this…"
+  default_prompt: "Usa $pr-to-video para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

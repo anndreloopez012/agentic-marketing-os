@@ -1,0 +1,88 @@
+{
+  "name": "agentic-marketing-os",
+  "owner": {
+    "name": "Agentic Marketing OS"
+  },
+  "metadata": {
+    "description": "Skills de marketing, SEO/GEO, diseño, video y memoria para trabajar el marketing de tu empresa con IA.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "marketing",
+      "source": "./",
+      "description": "Estrategia, copywriting, pauta, email, contenido, Instagram y gestión de clientes. (13 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/marketing/"
+      ]
+    },
+    {
+      "name": "seo-geo",
+      "source": "./",
+      "description": "SEO técnico y local, y GEO para aparecer en ChatGPT, Perplexity y Google AI Overviews. (3 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/seo-geo/"
+      ]
+    },
+    {
+      "name": "research",
+      "source": "./",
+      "description": "Scraping web e inteligencia competitiva en redes sociales. (2 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/research-intelligence/"
+      ]
+    },
+    {
+      "name": "design",
+      "source": "./",
+      "description": "Diseño web y UI/UX, sistemas de diseño, redes sociales, imágenes con IA y pulido visual. (28 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/design-creative/",
+        "./skills/design-creative/visual-polishers/"
+      ]
+    },
+    {
+      "name": "video-audio",
+      "source": "./",
+      "description": "Video programático (Remotion, HyperFrames), dirección con IA (Veo, Flow, Higgsfield) y audio (ElevenLabs). (31 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/video-production/ai-directing/",
+        "./skills/video-production/hyperframes/",
+        "./skills/video-production/remotion/",
+        "./skills/video-production/video-workflows/",
+        "./skills/audio/"
+      ]
+    },
+    {
+      "name": "browser",
+      "source": "./",
+      "description": "Navegador autónomo para agentes: capturas, formularios, QA y auditorías. (9 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/browser-automation/",
+        "./skills/browser-automation/agent-browser/specialized/"
+      ]
+    },
+    {
+      "name": "memory",
+      "source": "./",
+      "description": "Memoria continua con Obsidian y grafos de conocimiento con Graphify. (3 skills)",
+      "version": "2.0.0",
+      "category": "marketing",
+      "skills": [
+        "./skills/memory/"
+      ]
+    }
+  ]
+}

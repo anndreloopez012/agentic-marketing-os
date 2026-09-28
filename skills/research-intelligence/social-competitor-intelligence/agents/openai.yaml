@@ -1,0 +1,6 @@
+interface:
+  display_name: "Social Competitor Intelligence"
+  short_description: "Espionaje ético e inteligencia competitiva en redes sociales y…"
+  default_prompt: "Usa $social-competitor-intelligence para ayudarme con esta tarea."
+policy:
+  allow_implicit_invocation: true

@@ -1,11 +1,11 @@
 ---
 name: obsidian-graph-replicator
-description: "Replicate the Obsidian/Graphify nebula graph design in any web app without depending on marketing-digital-ia, Graphify, Obsidian, npm, CDNs, or a backend. Use the bundled self-contained vanilla HTML/CSS/JS template in assets/nebula-graph-template, or adapt marketing-digital-ia/static/unified.js and static/style.css for deeper parity, to reproduce the screenshot-style full-screen dark graph with 3D spherical nodes, glow, dense links, labels, and orbital arcs. Also covers optional live graph.json, note lookup, prompt memory, and agent overlays."
+description: "Replicate the Obsidian/Graphify nebula graph design in any web app without depending on Graphify, Obsidian, npm, CDNs, or a backend. Use the bundled self-contained vanilla HTML/CSS/JS template in assets/nebula-graph-template to reproduce the screenshot-style full-screen dark graph with 3D spherical nodes, glow, dense links, labels, and orbital arcs. Also covers optional live graph.json, note lookup, prompt memory, and agent overlays."
 ---
 
 # Obsidian Graph Replicator
 
-Use this skill to replicate the screenshot-style graph design in another web app without requiring the original project. The skill now carries a self-contained vanilla template that runs with embedded sample data. Use the original `marketing-digital-ia` code only as a parity reference or when the target app needs the exact production behavior.
+Use this skill to replicate the screenshot-style graph design in another web app without requiring the original project. The skill now carries a self-contained vanilla template that runs with embedded sample data.
 
 ## Portable First
 
@@ -22,21 +22,10 @@ This template has no external dependencies: no npm, no CDN, no framework, no Gra
 Install it with:
 
 ```bash
-python3 /Users/macbookpro/.codex/skills/obsidian-graph-replicator/scripts/install_nebula_graph.py /path/to/target-web-root
+python3 <skill-dir>/scripts/install_nebula_graph.py /path/to/target-web-root
 ```
 
 Read `references/portable-template.md` before using or modifying the bundled template.
-
-## Source Code First
-
-When exact parity with `marketing-digital-ia` is needed, inspect and adapt the existing code:
-
-- `/Users/macbookpro/Documents/PROYECTOS/marketing-digital-ia/static/unified.js`: graph renderer, Fibonacci sphere, glow cache, links, labels, orbital rings, camera interaction, optional agent animation.
-- `/Users/macbookpro/Documents/PROYECTOS/marketing-digital-ia/static/style.css`: full-screen graph layout, canvas sizing, overlays, scan/vignette effects, node panel and optional feed styles.
-- `/Users/macbookpro/Documents/PROYECTOS/marketing-digital-ia/src/marketing_digital_ia/server.py`: `load_graph()`, `/api/graph`, `/api/note`, `/api/activity`, `/api/health`, graph memory hooks.
-- `/Users/macbookpro/Documents/PROYECTOS/marketing-digital-ia/src/marketing_digital_ia/memory_sync.py`: optional Obsidian note generation and Graphify refresh flow.
-
-Use this path for deep integration, not as a hard dependency for simple replication.
 
 ## Core Workflow
 
@@ -90,7 +79,7 @@ Use this path for deep integration, not as a hard dependency for simple replicat
 
 - The visual design must be reproducible from the bundled template without the original repo or backend.
 - When live data exists, the same `graph.json` should power both the visual graph and prompt memory. Do not maintain separate graph sources.
-- Treat `marketing-digital-ia` source code as canonical only for exact parity; the portable template is canonical for dependency-free replication.
+- The portable template is canonical for dependency-free replication.
 - Agents must consult graph memory before answering, generating prompts, or creating deliverables when the target app includes agents.
 - Keep note access safe: resolve files only under configured note roots.
 - Do not expose secrets in graph, notes, or frontend config.

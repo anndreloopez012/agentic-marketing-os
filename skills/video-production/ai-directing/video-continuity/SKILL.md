@@ -23,7 +23,7 @@ Los tres pilares de continuidad son:
 ## Style Bible: estructura mínima
 
 Antes de generar el primer clip de una campaña, crea un Style Bible. Guárdalo en:
-`~/Documents/Playground/memoria_tools/image_generation_memory.json` bajo `video_sessions > style_bible`.
+`./marca/image_generation_memory.json` (en la carpeta del proyecto) bajo `video_sessions > style_bible`.
 
 ```json
 {
